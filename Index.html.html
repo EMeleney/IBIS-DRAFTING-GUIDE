@@ -1,0 +1,3362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ibis Legacy Law — Estate Planning Drafting Guide</title>
+<style>
+:root {
+  --navy: #1a2744;
+  --navy-light: #243058;
+  --gold: #b8952a;
+  --gold-light: #d4aa3a;
+  --cream: #faf8f4;
+  --white: #ffffff;
+  --border: #e2ddd5;
+  --border-strong: #c8c0b0;
+  --text: #0d0d0d;
+  --text-muted: #1a1a1a;
+  --text-light: #555555;
+  --bg-secondary: #f0ede8;
+  --sidebar-w: 240px;
+
+  --tag-add-bg: #e8f5e9; --tag-add-text: #2e7d32; --tag-add-border: #a5d6a7;
+  --tag-remove-bg: #fdecea; --tag-remove-text: #c62828; --tag-remove-border: #ef9a9a;
+  --tag-replace-bg: #fff8e1; --tag-replace-text: #e65100; --tag-replace-border: #ffcc80;
+  --tag-check-bg: #e3f2fd; --tag-check-text: #1565c0; --tag-check-border: #90caf9;
+  --tag-format-bg: #ede7f6; --tag-format-text: #4527a0; --tag-format-border: #b39ddb;
+  --tag-situational-bg: #fce4ec; --tag-situational-text: #880e4f; --tag-situational-border: #f48fb1;
+  --tag-note-bg: #f3f3f3; --tag-note-text: #424242; --tag-note-border: #bdbdbd;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  background: var(--cream);
+  color: var(--text);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── HEADER ── */
+header {
+  background: var(--navy);
+  color: white;
+  padding: 0 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 58px;
+  flex-shrink: 0;
+  border-bottom: 2px solid var(--gold);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.header-left { display: flex; align-items: center; gap: 14px; }
+.logo-mark {
+  width: 34px; height: 34px;
+  background: var(--gold);
+  border-radius: 4px;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700; font-size: 15px; color: var(--navy);
+  letter-spacing: -0.5px;
+  flex-shrink: 0;
+}
+.header-title { font-size: 15px; font-weight: 600; color: white; letter-spacing: 0.01em; }
+.header-subtitle { font-size: 11px; color: rgba(255,255,255,0.55); margin-top: 1px; }
+.header-right { display: flex; align-items: center; gap: 14px; }
+.header-meta {
+  display: flex; flex-direction: column; align-items: flex-end;
+  font-size: 10.5px; line-height: 1.35;
+  color: rgba(255,255,255,0.62);
+  white-space: nowrap;
+}
+.header-version { color: var(--gold-light); font-weight: 700; }
+.search-box {
+  display: flex; align-items: center; gap: 8px;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 6px;
+  padding: 6px 12px;
+  width: 300px;
+}
+.search-box svg { opacity: 0.5; flex-shrink: 0; }
+#search {
+  background: none; border: none; outline: none;
+  color: white; font-size: 13px; width: 100%;
+}
+#search::placeholder { color: rgba(255,255,255,0.4); }
+
+/* ── LAYOUT ── */
+.layout {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+  height: calc(100vh - 58px);
+}
+
+/* ── SIDEBAR ── */
+.sidebar {
+  width: var(--sidebar-w);
+  background: var(--navy);
+  flex-shrink: 0;
+  overflow-y: auto;
+  padding: 12px 0 24px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255,255,255,0.15) transparent;
+}
+.sidebar::-webkit-scrollbar { width: 4px; }
+.sidebar::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); border-radius: 2px; }
+
+.nav-section-label {
+  font-size: 9px; font-weight: 700; letter-spacing: 0.12em;
+  text-transform: uppercase; color: rgba(255,255,255,0.3);
+  padding: 14px 18px 4px;
+}
+.nav-item {
+  display: flex; align-items: center; gap: 10px;
+  padding: 8px 18px;
+  font-size: 12.5px; color: rgba(255,255,255,0.6);
+  cursor: pointer;
+  border-left: 2px solid transparent;
+  transition: all 0.15s;
+  user-select: none;
+}
+.nav-item:hover { color: white; background: rgba(255,255,255,0.06); }
+.nav-item.active {
+  color: var(--gold-light);
+  border-left-color: var(--gold);
+  background: rgba(184,149,42,0.1);
+  font-weight: 600;
+}
+.nav-subitem {
+  padding-left: 42px;
+  font-size: 12px;
+  color: rgba(255,255,255,0.52);
+}
+.nav-subitem svg { width: 12px; height: 12px; }
+.nav-item svg { flex-shrink: 0; opacity: 0.7; }
+.nav-item.active svg { opacity: 1; }
+
+/* ── MAIN CONTENT ── */
+.main {
+  flex: 1;
+  overflow-y: auto;
+  padding: 28px 36px 48px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-strong) transparent;
+}
+.main::-webkit-scrollbar { width: 6px; }
+.main::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 3px; }
+
+.section { display: none; }
+.section.active { display: block; }
+
+.section-header {
+  border-bottom: 1.5px solid var(--border);
+  padding-bottom: 14px;
+  margin-bottom: 24px;
+}
+.section-title {
+  font-size: 22px; font-weight: 700; color: var(--navy);
+  letter-spacing: -0.3px;
+}
+.section-subtitle {
+  font-size: 13px; color: var(--text-muted); margin-top: 4px;
+}
+.section-actions {
+  display: flex; flex-wrap: wrap; gap: 8px;
+  margin-top: 12px;
+}
+.section-meta {
+  display: inline-block;
+  font-size: 11px; color: var(--text-light);
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 3px 8px;
+  margin-top: 8px;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+}
+
+/* ── GROUP LABELS ── */
+.group-label {
+  font-size: 15px; font-weight: 800; letter-spacing: 0.03em;
+  color: var(--navy);
+  margin: 30px 0 10px;
+  display: flex; align-items: center; gap: 8px;
+  padding-top: 8px;
+}
+.group-label::after {
+  content: ''; flex: 1; height: 2px; background: var(--gold);
+  opacity: 0.55;
+}
+
+/* ── RULE CARDS ── */
+.rule-card {
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  margin-bottom: 8px;
+  background: var(--white);
+  overflow: hidden;
+  transition: box-shadow 0.15s;
+}
+.rule-card:hover { box-shadow: 0 2px 8px rgba(0,0,0,0.07); }
+.rule-card.highlight-flash {
+  box-shadow: 0 0 0 2px var(--gold);
+}
+.group-label.highlight-flash {
+  background: rgba(184,149,42,0.16);
+  border-radius: 6px;
+  padding-left: 8px;
+}
+
+.rule-head {
+  display: flex; align-items: flex-start; gap: 10px;
+  padding: 11px 14px;
+  cursor: pointer;
+  user-select: none;
+}
+.rule-head:hover { background: var(--bg-secondary); }
+
+.tag {
+  display: inline-flex; align-items: center;
+  font-size: 10px; font-weight: 700; letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 2px 7px;
+  border-radius: 3px;
+  border: 1px solid;
+  flex-shrink: 0;
+  margin-top: 1px;
+  white-space: nowrap;
+}
+.tag-add    { background: var(--tag-add-bg);    color: var(--tag-add-text);    border-color: var(--tag-add-border); }
+.tag-remove { background: var(--tag-remove-bg); color: var(--tag-remove-text); border-color: var(--tag-remove-border); }
+.tag-replace{ background: var(--tag-replace-bg);color: var(--tag-replace-text);border-color: var(--tag-replace-border); }
+.tag-check  { background: var(--tag-check-bg);  color: var(--tag-check-text);  border-color: var(--tag-check-border); }
+.tag-format { background: var(--tag-format-bg); color: var(--tag-format-text); border-color: var(--tag-format-border); }
+.tag-situational { background: var(--tag-situational-bg); color: var(--tag-situational-text); border-color: var(--tag-situational-border); }
+.tag-note   { background: var(--tag-note-bg);   color: var(--tag-note-text);   border-color: var(--tag-note-border); }
+
+.rule-title-text {
+  font-size: 13px; font-weight: 600; color: var(--text);
+  flex: 1; line-height: 1.4; padding-top: 1px;
+}
+.rule-chevron {
+  color: var(--text-light); flex-shrink: 0; margin-top: 2px;
+  transition: transform 0.2s;
+}
+.rule-card.open .rule-chevron { transform: rotate(180deg); }
+
+.rule-body {
+  display: none;
+  border-top: 1px solid var(--border);
+  padding: 14px 16px 16px;
+  background: #fdfcfa;
+}
+.rule-card.open .rule-body { display: block; }
+
+.rule-body p, .rule-body li {
+  font-size: 13px; color: var(--text-muted);
+  line-height: 1.65;
+}
+.rule-body ul {
+  padding-left: 18px; margin-top: 6px;
+}
+.rule-body ul li { margin-bottom: 4px; }
+.rule-body strong { color: var(--text); font-weight: 600; }
+
+/* ── COPYABLE BLOCKS ── */
+.copy-wrap { position: relative; margin-top: 10px; }
+.copy-block {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 12pt;
+  line-height: 1.7;
+  background: #f8f6f2;
+  border: 1px solid var(--border-strong);
+  border-left: 3px solid var(--navy);
+  border-radius: 0 6px 6px 0;
+  padding: 12px 40px 12px 16px;
+  white-space: pre-wrap;
+  word-break: break-word;
+  color: var(--text);
+  user-select: text;
+}
+.scenario-option {
+  border-left: 3px solid var(--gold);
+  padding-left: 10px;
+  margin-top: 10px;
+}
+.scenario-option-label {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--navy);
+  margin: 0 0 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.scenario-hidden { display: none !important; }
+.copy-btn {
+  position: absolute; top: 8px; right: 8px;
+  background: var(--navy); color: white;
+  border: none; border-radius: 4px;
+  padding: 4px 9px; font-size: 11px; cursor: pointer;
+  opacity: 0.7; transition: opacity 0.15s;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+}
+.copy-btn:hover { opacity: 1; }
+.copy-btn.copied { background: #2e7d32; opacity: 1; }
+
+/* ── STEP CARDS (workflow) ── */
+.step-card {
+  display: flex; gap: 14px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  padding: 14px 16px;
+  margin-bottom: 10px;
+}
+.step-num {
+  width: 26px; height: 26px; border-radius: 50%;
+  background: var(--navy); color: white;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px; font-weight: 700; flex-shrink: 0;
+}
+.step-body { font-size: 13px; line-height: 1.65; color: var(--text-muted); flex: 1; }
+.step-body strong { color: var(--text); }
+.step-card.checked {
+  background: #f5f5f5;
+  opacity: 0.72;
+}
+.step-card.checked .step-body { text-decoration: line-through; color: var(--text-light); }
+
+/* ── SEARCH RESULTS ── */
+#search-panel { display: none; }
+#search-panel.active { display: block; }
+.sr-header {
+  font-size: 13px; color: var(--text-muted);
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border);
+}
+.sr-header strong { color: var(--text); }
+.sr-item {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  padding: 12px 16px;
+  margin-bottom: 8px;
+  cursor: pointer;
+  transition: box-shadow 0.15s;
+}
+.sr-item:hover { box-shadow: 0 2px 8px rgba(0,0,0,0.07); border-color: var(--border-strong); }
+.sr-doc { font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold); margin-bottom: 4px; }
+.sr-title { font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 3px; }
+.sr-excerpt { font-size: 12px; color: var(--text-muted); line-height: 1.5; }
+mark { background: #fff176; border-radius: 2px; padding: 0 1px; }
+.no-results { text-align: center; padding: 60px 20px; color: var(--text-light); font-size: 14px; }
+
+/* ── LEGEND ── */
+.legend {
+  display: flex; flex-wrap: wrap; gap: 6px;
+  margin-bottom: 24px;
+  padding: 12px 16px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 7px;
+}
+.legend-item { display: flex; align-items: center; gap: 5px; font-size: 11px; color: var(--text-muted); }
+
+/* -- START-OF-MATTER PROFILE -- */
+.profile-panel, .gap-panel {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 18px;
+}
+.profile-head {
+  display: flex; align-items: flex-start; justify-content: space-between;
+  gap: 16px; margin-bottom: 14px;
+}
+.profile-title {
+  font-size: 14px; font-weight: 700; color: var(--navy);
+}
+.profile-subtitle {
+  font-size: 12px; color: var(--text-muted); line-height: 1.5; margin-top: 2px;
+}
+.profile-status {
+  font-size: 11px; color: var(--text-light);
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 4px 8px;
+  white-space: nowrap;
+}
+.profile-grid {
+  display: grid;
+  grid-template-columns: minmax(190px, 1.1fr) minmax(150px, 0.8fr) minmax(140px, 0.7fr);
+  gap: 10px;
+  margin-bottom: 12px;
+}
+.profile-field label {
+  display: block;
+  font-size: 10px; font-weight: 700; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--text-light);
+  margin-bottom: 5px;
+}
+.profile-input, .profile-select {
+  width: 100%;
+  border: 1px solid var(--border-strong);
+  border-radius: 6px;
+  background: var(--cream);
+  padding: 8px 9px;
+  font-size: 13px;
+  color: var(--text);
+  font-family: inherit;
+}
+.profile-input:focus, .profile-select:focus {
+  outline: 2px solid rgba(184,149,42,0.25);
+  border-color: var(--gold);
+}
+.flag-grid {
+  display: flex; flex-wrap: wrap; gap: 8px;
+  padding-top: 2px;
+}
+.flag-toggle {
+  position: relative;
+  display: inline-flex; align-items: center; gap: 6px;
+  border: 1px solid var(--border-strong);
+  border-radius: 20px;
+  padding: 6px 10px;
+  background: var(--cream);
+  font-size: 12px; font-weight: 500;
+  cursor: pointer; user-select: none;
+  transition: all 0.15s;
+}
+.flag-toggle input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+.flag-toggle::before {
+  content: '';
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--border-strong);
+}
+.flag-toggle.active {
+  background: var(--navy);
+  border-color: var(--navy);
+  color: white;
+}
+.flag-toggle.active::before { background: var(--gold-light); }
+.profile-actions {
+  display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+  margin-top: 12px;
+}
+.action-btn, .tool-btn, .filter-clear {
+  border: 1px solid var(--border-strong);
+  border-radius: 6px;
+  background: var(--white);
+  color: var(--text);
+  padding: 6px 10px;
+  font-size: 12px;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.action-btn.primary {
+  background: var(--navy);
+  border-color: var(--navy);
+  color: white;
+}
+.action-btn:hover, .tool-btn:hover, .filter-clear:hover {
+  border-color: var(--navy);
+  background: #eef0f5;
+  color: var(--text);
+}
+.action-btn.primary:hover { background: var(--navy-light); color: white; }
+.profile-hint {
+  font-size: 11px; color: var(--text-light); line-height: 1.45;
+}
+.gap-title {
+  font-size: 13px; font-weight: 700; color: var(--navy);
+  margin-bottom: 8px;
+}
+.gap-panel ul {
+  padding-left: 18px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(220px, 1fr));
+  gap: 5px 22px;
+}
+.gap-panel li {
+  font-size: 12px; color: var(--text-muted); line-height: 1.45;
+}
+
+/* ── SCENARIO FILTER BAR ── */
+.filter-bar {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 8px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 12px 16px;
+  margin-bottom: 20px;
+}
+.filter-bar-label {
+  font-size: 11px; font-weight: 700; letter-spacing: 0.07em;
+  text-transform: uppercase; color: var(--text-light);
+  white-space: nowrap; margin-right: 4px;
+}
+.filter-summary {
+  font-size: 11px;
+  color: var(--text-light);
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 4px 8px;
+}
+.filter-chip {
+  display: inline-flex; align-items: center; gap: 5px;
+  padding: 5px 11px;
+  border-radius: 20px;
+  border: 1px solid var(--border-strong);
+  background: var(--cream);
+  font-size: 12px; font-weight: 500; color: var(--text);
+  cursor: pointer; user-select: none;
+  transition: all 0.15s;
+}
+.filter-chip:hover { border-color: var(--navy); background: #eef0f5; }
+.filter-chip.active {
+  background: var(--navy); color: white;
+  border-color: var(--navy);
+}
+.filter-chip .chip-dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: currentColor; opacity: 0.6; flex-shrink: 0;
+}
+.filter-sep {
+  width: 1px; height: 20px; background: var(--border);
+  margin: 0 4px;
+}
+.filter-actions {
+  display: inline-flex; align-items: center; gap: 8px;
+  margin-left: auto;
+}
+
+/* ── RULE CARD — filtered hidden ── */
+.rule-card.filter-hidden, .archive-section { display: none !important; }
+.rule-card.filter-match .rule-head { background: #f0f5ff; }
+
+/* ── CHECKLIST ── */
+.check-wrap {
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; margin-top: 2px;
+}
+.rule-checkbox {
+  width: 16px; height: 16px;
+  border: 1.5px solid var(--border-strong);
+  border-radius: 3px;
+  cursor: pointer;
+  appearance: none;
+  background: white;
+  transition: all 0.15s;
+  flex-shrink: 0;
+  position: relative;
+}
+.rule-checkbox:checked {
+  background: #2e7d32;
+  border-color: #2e7d32;
+}
+.rule-checkbox:checked::after {
+  content: '';
+  position: absolute; left: 3px; top: 0px;
+  width: 5px; height: 9px;
+  border: 2px solid white;
+  border-left: none; border-top: none;
+  transform: rotate(45deg);
+}
+.rule-card.checked .rule-title-text { text-decoration: line-through; color: var(--text-light); }
+.rule-card.checked { opacity: 0.6; }
+.rule-card.checked .rule-head { background: #f5f5f5; }
+
+/* ── CHECKLIST PROGRESS ── */
+.progress-bar-wrap {
+  display: none;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 12px 16px;
+  margin-bottom: 16px;
+  align-items: center; gap: 12px;
+}
+.progress-bar-wrap.visible { display: flex; }
+.progress-label { font-size: 12px; color: var(--text); white-space: nowrap; font-weight: 500; }
+.progress-track {
+  flex: 1; height: 6px; background: var(--border);
+  border-radius: 3px; overflow: hidden;
+}
+.progress-fill {
+  height: 100%; background: #2e7d32;
+  border-radius: 3px; transition: width 0.3s;
+  width: 0%;
+}
+.progress-reset {
+  font-size: 11px; color: var(--text-light);
+  cursor: pointer; text-decoration: underline; white-space: nowrap;
+  background: none; border: none; padding: 0; font-family: inherit;
+}
+.progress-reset:hover { color: var(--text); }
+
+/* ── SCROLLBAR GUTTER ── */
+@media print {
+  header, .sidebar { display: none; }
+  .main { padding: 20px; }
+  .layout { height: auto; overflow: visible; }
+  .rule-body { display: block !important; }
+  .copy-btn { display: none; }
+  .filter-bar, .progress-bar-wrap, .profile-panel, .gap-panel { display: none; }
+}
+
+@media (max-width: 900px) {
+  header { height: auto; min-height: 58px; padding: 10px 16px; gap: 12px; align-items: flex-start; }
+  .header-right { flex: 1; justify-content: flex-end; flex-wrap: wrap; }
+  .header-meta { align-items: flex-start; }
+  .search-box { width: min(100%, 280px); }
+  .profile-grid { grid-template-columns: 1fr; }
+  .gap-panel ul { grid-template-columns: 1fr; }
+  .layout { height: calc(100vh - 78px); }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-left">
+    <div class="logo-mark">IL</div>
+    <div>
+      <div class="header-title">Ibis Legacy Law</div>
+      <div class="header-subtitle">Estate Planning Drafting Guide</div>
+    </div>
+  </div>
+  <div class="header-right">
+    <div class="header-meta">
+      <span class="header-version">Version 2.2</span>
+      <span>Last updated May 21, 2026</span>
+    </div>
+    <div class="search-box">
+    <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      <input id="search" type="text" placeholder="Search rules, clauses, articles…" autocomplete="off" />
+    </div>
+  </div>
+</header>
+
+<div class="layout">
+
+<!-- SIDEBAR -->
+<nav class="sidebar" id="sidebar">
+  <div class="nav-section-label">Getting Started</div>
+  <div class="nav-item active" data-section="workflow" onclick="nav(this)">
+    <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+    Drafting Workflow
+  </div>
+
+  <div class="nav-section-label">WealthCounsel Docs</div>
+  <div class="nav-item" data-section="will" onclick="nav(this)">
+    <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+    Last Will &amp; Testament
+  </div>
+  <div class="nav-item" data-section="rlt" onclick="nav(this)">
+    <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+    Revocable Living Trust
+  </div>
+  <div class="nav-item nav-subitem" data-section="rlt" data-scroll-target="rlt-qc" onclick="nav(this)">
+    <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+    QC &amp; Final Touches
+  </div>
+  <div class="nav-item" data-section="cert" onclick="nav(this)">
+    <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg>
+    Certification of Trust
+  </div>
+  <div class="nav-item" data-section="trustsum" onclick="nav(this)">
+    <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+    Trust Summary
+  </div>
+  <div class="nav-item" data-section="trustee-aff" onclick="nav(this)">
+    <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+    Trustee Affidavit
+  </div>
+
+  <div class="nav-section-label">Ibis Templates</div>
+  <div class="nav-item" data-section="dpoa" onclick="nav(this)">
+    <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+    Durable POA
+  </div>
+  <div class="nav-item" data-section="hcpoa" onclick="nav(this)">
+    <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+    Healthcare POA / HIPAA
+  </div>
+  <div class="nav-item" data-section="ancillary" onclick="nav(this)">
+    <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><polyline points="13 2 13 9 20 9"/></svg>
+    Ancillary Documents
+  </div>
+  <div class="nav-item" data-section="deed" onclick="nav(this)">
+    <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    Warranty Deed
+  </div>
+  <div class="nav-item" data-section="portfolio" onclick="nav(this)">
+    <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+    Portfolio Inserts
+  </div>
+  <div class="nav-item" data-section="mapt" onclick="nav(this)">
+    <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+    MAPT
+  </div>
+  <div class="nav-item" data-section="pet" onclick="nav(this)">
+    <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="4" r="2"/><circle cx="18" cy="8" r="2"/><circle cx="20" cy="16" r="2"/><path d="M9 10a5 5 0 0 1 5 5v3.5a3.5 3.5 0 0 1-6.84 1.045Q6.52 17.48 4.46 16.84A3.5 3.5 0 0 1 5.5 10Z"/></svg>
+    Pet Planning
+  </div>
+</nav>
+
+<!-- MAIN -->
+<main class="main" id="main">
+
+<!-- FILTER BAR — shown when inside any document section -->
+<div id="filter-bar" class="filter-bar" style="display:none">
+  <span class="filter-bar-label">Filter by scenario:</span>
+  <span class="filter-summary" id="filter-summary">Showing all rules</span>
+  <div class="filter-chip" data-filter="married" onclick="toggleFilter(this)"><span class="chip-dot"></span>Married</div>
+  <div class="filter-chip" data-filter="single" onclick="toggleFilter(this)"><span class="chip-dot"></span>Single</div>
+  <div class="filter-chip" data-filter="minor-children" onclick="toggleFilter(this)"><span class="chip-dot"></span>Minor children</div>
+  <div class="filter-chip" data-filter="blended" onclick="toggleFilter(this)"><span class="chip-dot"></span>Blended family</div>
+  <div class="filter-chip" data-filter="prenup" onclick="toggleFilter(this)"><span class="chip-dot"></span>Prenup</div>
+  <div class="filter-chip" data-filter="restatement" onclick="toggleFilter(this)"><span class="chip-dot"></span>Restatement</div>
+  <div class="filter-sep"></div>
+  <div class="filter-chip" data-filter="business" onclick="toggleFilter(this)"><span class="chip-dot"></span>Business interest</div>
+  <div class="filter-chip" data-filter="medicaid" onclick="toggleFilter(this)"><span class="chip-dot"></span>Medicaid / MAPT</div>
+  <div class="filter-chip" data-filter="snt" onclick="toggleFilter(this)"><span class="chip-dot"></span>SNT</div>
+  <div class="filter-chip" data-filter="pets" onclick="toggleFilter(this)"><span class="chip-dot"></span>Pets</div>
+  <div class="filter-chip" data-filter="foreign-trustee" onclick="toggleFilter(this)"><span class="chip-dot"></span>Foreign trustee risk</div>
+  <div class="filter-sep"></div>
+  <div class="filter-actions">
+    <button class="filter-clear" type="button" onclick="clearFilters()">Clear filters</button>
+    <button class="tool-btn" id="detail-toggle" type="button" onclick="toggleDetailMode()">Headings only</button>
+  </div>
+</div>
+
+<!-- PROGRESS BAR -->
+<div id="progress-wrap" class="progress-bar-wrap">
+  <span class="progress-label" id="progress-label">0 of 0 complete</span>
+  <div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div>
+  <button class="progress-reset" type="button" onclick="resetChecks()">Reset this section</button>
+</div>
+
+<!-- SEARCH PANEL -->
+<div id="search-panel">
+  <div class="section-header">
+    <div class="section-title">Search Results</div>
+    <div class="sr-header" id="sr-header"></div>
+  </div>
+  <div id="sr-list"></div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     SECTION: DRAFTING WORKFLOW
+═══════════════════════════════════════════════════════ -->
+<div class="section active" id="section-workflow">
+  <div class="section-header">
+    <div class="section-title">Drafting Workflow</div>
+    <div class="section-subtitle">Eight-step process for every trust engagement — from intake to download</div>
+  </div>
+
+  <div class="profile-panel" id="client-profile-panel">
+    <div class="profile-head">
+      <div>
+        <div class="profile-title">Start here: client profile</div>
+        <div class="profile-subtitle">Enter the matter once. The guide will apply scenario filters and keep checklist progress in a separate matter-specific scope.</div>
+      </div>
+      <div class="profile-status" id="profile-status">No profile saved</div>
+    </div>
+    <div class="profile-grid">
+      <div class="profile-field">
+        <label for="profile-client">Client / matter name</label>
+        <input class="profile-input" id="profile-client" type="text" autocomplete="off" placeholder="Client name" />
+      </div>
+      <div class="profile-field">
+        <label for="profile-matter">Matter type</label>
+        <select class="profile-select" id="profile-matter">
+          <option value="">Select type</option>
+          <option value="new-trust">New trust</option>
+          <option value="restatement">Restatement</option>
+          <option value="will-only">Will-only / ancillary</option>
+          <option value="mapt">MAPT</option>
+        </select>
+      </div>
+      <div class="profile-field">
+        <label for="profile-marital">Marital status</label>
+        <select class="profile-select" id="profile-marital">
+          <option value="">Select status</option>
+          <option value="married">Married</option>
+          <option value="single">Single</option>
+        </select>
+      </div>
+    </div>
+    <div class="flag-grid" aria-label="Key client flags">
+      <label class="flag-toggle"><input type="checkbox" value="minor-children" data-profile-flag />Minor children</label>
+      <label class="flag-toggle"><input type="checkbox" value="blended" data-profile-flag />Blended family</label>
+      <label class="flag-toggle"><input type="checkbox" value="prenup" data-profile-flag />Prenup</label>
+      <label class="flag-toggle"><input type="checkbox" value="business" data-profile-flag />Business interest</label>
+      <label class="flag-toggle"><input type="checkbox" value="medicaid" data-profile-flag />Medicaid / MAPT</label>
+      <label class="flag-toggle"><input type="checkbox" value="snt" data-profile-flag />SNT</label>
+      <label class="flag-toggle"><input type="checkbox" value="pets" data-profile-flag />Pets</label>
+      <label class="flag-toggle"><input type="checkbox" value="foreign-trustee" data-profile-flag />Foreign trustee risk</label>
+    </div>
+    <div class="profile-actions">
+      <button class="action-btn primary" type="button" onclick="applyProfileFromPanel()">Apply profile filters</button>
+      <button class="action-btn" type="button" onclick="clearProfile()">Clear profile</button>
+      <span class="profile-hint" id="profile-hint">Tip: add the client name before checking off tasks so progress stays separate from other matters.</span>
+    </div>
+  </div>
+
+  <div class="gap-panel">
+    <div class="gap-title">Content gaps to resolve before drafting</div>
+    <ul>
+      <li>Confirm the Fee Agreement and requested document list before adding optional documents.</li>
+      <li>For restatements, confirm the original trust date and whether the date should be preserved.</li>
+      <li>Confirm trustee addresses, successor fiduciary order, distribution ages, and held-in-trust terms.</li>
+      <li>Open any named source document before borrowing language from a prior matter or reference template.</li>
+      <li>For deeds, verify county-specific forms and current exemption requirements before finalizing.</li>
+      <li>When a rule depends on client intent, pause for attorney guidance rather than guessing.</li>
+    </ul>
+  </div>
+
+  <div class="legend">
+    <div class="legend-item"><span class="tag tag-add">Add</span> Insert new language</div>
+    <div class="legend-item"><span class="tag tag-remove">Remove</span> Delete this provision</div>
+    <div class="legend-item"><span class="tag tag-replace">Replace</span> Swap with provided text</div>
+    <div class="legend-item"><span class="tag tag-check">Check</span> Verify this condition</div>
+    <div class="legend-item"><span class="tag tag-format">Format</span> Formatting requirement</div>
+    <div class="legend-item"><span class="tag tag-situational">Situational</span> Applies in specific circumstances</div>
+    <div class="legend-item"><span class="tag tag-note">Note</span> Guidance / reference</div>
+  </div>
+
+  <div class="step-card"><div class="step-num">1</div><div class="step-body"><strong>Review intake materials.</strong> Thoroughly read the client questionnaire and intake notes. Confirm marital status, family structure, and whether this is a new trust or restatement. Pay attention to minor children, unique asset types (real estate, businesses), and special planning concerns. Retrieve and review existing trust documents for restatements; note whether the trust date should be preserved.</div></div>
+  <div class="step-card"><div class="step-num">2</div><div class="step-body"><strong>Launch WealthCounsel.</strong> Select client profile and input full names (double-check spelling), contact info and mailing address (used for Certification of Trust), family members in birth order using dropdowns for relationships. Choose correct scenario template (e.g., married with adult children). Enter seed funding amount (e.g., $10).</div></div>
+  <div class="step-card"><div class="step-num">3</div><div class="step-body"><strong>Draft core trust provisions.</strong> Trust name and date. Initial and successor trustees (include addresses). Confirm SSN will be used during life.</div></div>
+  <div class="step-card"><div class="step-num">4</div><div class="step-body"><strong>Define distribution terms.</strong> Choose strategy: outright at specific ages (e.g., 25/30/35), continue in trust with discretionary distributions, or conservative guidelines for minors. Build in support for mental health, addiction, or educational needs if applicable.</div></div>
+  <div class="step-card"><div class="step-num">5</div><div class="step-body"><strong>Contingencies and beneficiary clauses.</strong> Include alternate plans for common disaster scenarios. Default to heirs-at-law or prompt client to name specific people/charities. Confirm use of specific vs. general descendant clauses (e.g., naming children vs. "my descendants"). For clients with no children, remove all references to "Children" and "Descendants."</div></div>
+  <div class="step-card"><div class="step-num">6</div><div class="step-body"><strong>Trustee structure and governance.</strong> Name independent and successor trustees. Determine if Independent Special Trustee is necessary; remove if not required and revise cross-references (Sections 9(c), 10.07(g)). Address resignation, incapacity (2-doctor rule), and removal provisions.</div></div>
+  <div class="step-card"><div class="step-num">7</div><div class="step-body"><strong>Additional articles and customizations.</strong> Review and include: retirement plans language (especially if trust is TOD on IRAs/401ks), specific gifts or occupancy rights, Medicaid planning or tax election language, spendthrift protections, step-up in basis, discretionary distribution controls. Avoid unnecessary complexity — remove trustee-owned life insurance provisions unless creating an ILIT.</div></div>
+  <div class="step-card"><div class="step-num">8</div><div class="step-body"><strong>Download, edit, and tailor documents.</strong> Apply all post-WealthCounsel customizations per this guide. Update all fields in WealthCounsel Ribbon. Run Ctrl+F for unresolved error codes: "Error! Bookmark not defined" and "UNANSWERED." Update table of contents only after all drafting and editing is complete.</div></div>
+
+  <div class="group-label">General Principle</div>
+  <div class="rule-card open">
+    <div class="rule-head" onclick="toggleCard(this.parentElement)">
+      <span class="tag tag-note">Note</span>
+      <span class="rule-title-text">WealthCounsel templates are boilerplate-heavy — cut accordingly</span>
+      <svg class="rule-chevron" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+    </div>
+    <div class="rule-body">
+      <p>WealthCounsel templates are long and often boilerplate-heavy. Cut unnecessary provisions to improve clarity and reduce client overwhelm. Clients consistently respond better to documents that are short, clearly written, and tailored to their specific circumstances. Do not include language simply because it is in the template. Always evaluate what each provision accomplishes and whether it is relevant to the client's goals. If you are unsure about a provision, proposed edit, or planning approach — ask. No two plans are alike, and thoughtful collaboration improves the end result for both the client and the firm.</p>
+      <p style="margin-top:8px;"><strong>Before drafting:</strong> Double-check the Fee Agreement to confirm you are drafting the documents listed in it — not adding unnecessary documents.</p>
+    </div>
+  </div>
+
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     SECTION: LAST WILL & TESTAMENT
+═══════════════════════════════════════════════════════ -->
+<div class="section" id="section-will">
+  <div class="section-header">
+    <div class="section-title">Last Will &amp; Testament</div>
+    <div class="section-subtitle">Post-WealthCounsel customizations</div>
+  </div>
+
+  <div class="group-label">Formatting</div>
+
+  <div class="rule-card">
+    <div class="rule-head" onclick="toggleCard(this.parentElement)">
+      <span class="tag tag-format">Format</span>
+      <span class="rule-title-text">Font · Address in preamble (Lake &amp; Geauga County clients)</span>
+      <svg class="rule-chevron" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+    </div>
+    <div class="rule-body">
+      <p>Use <strong>Georgia font</strong>. For clients residing in <strong>Lake County and Geauga County</strong>, INCLUDE their full residential address in the preamble. All other counties — omit.</p>
+    </div>
+  </div>
+
+  <div class="rule-card">
+    <div class="rule-head" onclick="toggleCard(this.parentElement)">
+      <span class="tag tag-format">Format</span>
+      <span class="rule-title-text">Section headings on one line · Signature page layout</span>
+      <svg class="rule-chevron" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+    </div>
+    <div class="rule-body">
+      <p>Ensure all section headings fit on a single line and are followed by a dash (e.g., "Article One – Distribution of My Property"). Ensure the testator and witness signature lines appear on the same page. DELETE non-essential sections such as "Headings and Titles" or "Construction" if needed to adjust pagination. Also "remove space before paragraph" on signature lines.</p>
+    </div>
+  </div>
+
+  <div class="group-label">Article: Family Information</div>
+
+  <div class="rule-card">
+    <div class="rule-head" onclick="toggleCard(this.parentElement)">
+      <span class="tag tag-remove">Remove</span>
+      <span class="rule-title-text">Dates of birth for adult children</span>
+      <svg class="rule-chevron" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+    </div>
+    <div class="rule-body"><p>Remove dates of birth for adult children for privacy.</p></div>
+  </div>
+
+  <div class="rule-card">
+    <div class="rule-head" onclick="toggleCard(this.parentElement)">
+      <span class="tag tag-format">Format</span>
+      <span class="rule-title-text">Children referenced in narrative form, not bullet points</span>
+      <svg class="rule-chevron" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+    </div>
+    <div class="rule-body">
+      <p>When referencing children, use narrative form rather than bullet points. Example:</p>
+      <div class="copy-wrap"><div class="copy-block">I have three children. They are John, Susie, and Jane.</div><button class="copy-btn" onclick="copyBlock(this)">Copy</button></div>
+    </div>
+  </div>
+
+  <div class="rule-card">
+    <div class="rule-head" onclick="toggleCard(this.parentElement)">
+      <span class="tag tag-situational">Situational</span>
+      <span class="rule-title-text" data-scenarios="married">Disclaiming spouse — include this language + remove marital deduction clause</span>
+      <svg class="rule-chevron" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+    </div>
+    <div class="rule-body">
+      <div class="copy-wrap"><div class="copy-block">I have intentionally made no provision for [SPOUSE] under this Will. This omission is not due to accident or oversight. I have made other arrangements for the benefit of my spouse through non-probate transfers and other planning outside of this Will. It is my express intent that my spouse shall not receive any distribution under this Will.</div><button class="copy-btn" onclick="copyBlock(this)">Copy</button></div>
+      <p style="margin-top:10px">Then <strong>REMOVE</strong> from Article titled Taxes, Claims, and Expenses: the bracketed marital deduction administrative expense clause: "[If payment would decrease the federal estate tax marital deduction available to my estate or violate the provisions of Treasury Regulation Section 20.2056(b)-4(d)…]"</p>
+    </div>
+  </div>
+
+  <div class="rule-card">
+    <div class="rule-head" onclick="toggleCard(this.parentElement)">
+      <span class="tag tag-situational">Situational</span>
+      <span class="rule-title-text" data-scenarios="blended">Blended family — child of one spouse</span>
+      <svg class="rule-chevron" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+    </div>
+    <div class="rule-body">
+      <div class="copy-wrap"><div class="copy-block">[CHILD] is biologically my [WIFE'S/HUSBAND'S] child; however, for the purposes of my Will, they will be included in references to my children. All references in my Will to my children are to [THIS CHILD/THESE CHILDREN]. References to my descendants are to my children and their descendants, including descendants of any deceased child.</div><button class="copy-btn" onclick="copyBlock(this)">Copy</button></div>
+    </div>
+  </div>
+
+  <div class="group-label">Article: Distribution of Property</div>
+
+  <div class="rule-card">
+    <div class="rule-head" onclick="toggleCard(this.parentElement)">
+      <span class="tag tag-replace">Replace</span>
+      <span class="rule-title-text" data-scenarios="restatement">Trust restatements — pour-over first paragraph</span>
+      <svg class="rule-chevron" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+    </div>
+    <div class="rule-body">
+      <div class="copy-wrap"><div class="copy-block">I give all of my probate estate, excluding any property over which I have a power of appointment, after expenses and taxes are paid under this Will, to the then-acting Trustee of the [TRUST NAME] dated [ORIGINAL DATE], as may be amended or restated from time to time, to be added to the property of that trust. I direct that the Trustee administer the property according to the trust and any amendments made prior to my death.</div><button class="copy-btn" onclick="copyBlock(this)">Copy</button></div>
+    </div>
+  </div>
+
+  <div class="rule-card">
+    <div class="rule-head" onclick="toggleCard(this.parentElement)">
+      <span class="tag tag-remove">Remove</span>
+      <span class="rule-title-text">Disposition of Tangible Personal Property section — if trust directs it</span>
+      <svg class="rule-chevron" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+    </div>
+    <div class="rule-body"><p>If client has a trust that directs where tangible personal property goes, remove the "Disposition of Tangible Personal Property" section from the Will.</p></div>
+  </div>
+
+  <div class="rule-card">
+    <div class="rule-head" onclick="toggleCard(this.parentElement)">
+      <span class="tag tag-check">Check</span>
+      <span class="rule-title-text" data-scenarios="minor-children">Alternate disposition — name children specifically · add per stirpes · minor beneficiary Article Five</span>
+      <svg class="rule-chevron" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+    </div>
+    <div class="rule-body">
+      <ul>
+        <li>For the alternate disposition clause, specifically name children. Avoid using the general term "Descendants."</li>
+        <li>Always ADD <em>per stirpes</em> unless client says otherwise.</li>
+        <li>If a minor beneficiary is listed in the alternate distributions, add new Article Five titled "Distribution Alternatives."</li>
+      </ul>
+      <div class="copy-wrap" style="margin-top:10px"><div class="copy-block">Article Five - Distribution Alternatives
+
+My Executor may make any payments under my Will: directly to a beneficiary; in any form allowed by applicable state law for gifts or transfers to minors or persons under disability; to a beneficiary's guardian, conservator, or caregiver for the beneficiary's benefit; or by direct payment of the beneficiary's expenses.
+
+A receipt by the recipient for any distribution will fully discharge my Executor if the distribution is consistent with the proper exercise of my Executor's duties under my Will.</div><button class="copy-btn" onclick="copyBlock(this)">Copy</button></div>
+    </div>
+  </div>
+
+  <div class="group-label">Article: Designation and Succession of Fiduciaries</div>
+
+  <div class="rule-card">
+    <div class="rule-head" onclick="toggleCard(this.parentElement)">
+      <span class="tag tag-format">Format</span>
+      <span class="rule-title-text">Executors listed in paragraph form, not bullet points</span>
+      <svg class="rule-chevron" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+    </div>
+    <div class="rule-body"><p>List Executors in paragraph form rather than bullet points.</p></div>
+  </div>
+
+  <div class="rule-card">
+    <div class="rule-head" onclick="toggleCard(this.parentElement)">
+      <span class="tag tag-remove">Remove</span>
+      <span class="rule-title-text">Delete "Conservatorships" section</span>
+      <svg class="rule-chevron" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+    </div>
+    <div class="rule-body"><p>Always delete the section titled "Conservatorships."</p></div>
+  </div>
+
+  <div class="rule-card">
+    <div class="rule-head" onclick="toggleCard(this.parentElement)">
+      <span class="tag tag-situational">Situational</span>
+      <span class="rule-title-text" data-scenarios="minor-children">Add guardian provisions — clients with minor children</span>
+      <svg class="rule-chevron" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+    </div>
+    <div class="rule-body">
+      <div class="copy-wrap"><div class="copy-block">Guardian of the Person of Minor Children
+
+I appoint the following, in the order named, as guardian of the person of each child of mine who needs a guardian: ______________________.
+
+Guardian of the Estate of Minor Children
+
+If it becomes necessary to appoint a guardian for the estate of any child of mine, I nominate the then serving Trustee of the ____________ Trust dated _________, _____, to serve as guardian of that child's estate.
+
+I direct that no guardian be required to give any bond in any jurisdiction. But if a guardian's bond is required by law or by court determination, no sureties will be required on the bond.</div><button class="copy-btn" onclick="copyBlock(this)">Copy</button></div>
+    </div>
+  </div>
+
+  <div class="rule-card">
+    <div class="rule-head" onclick="toggleCard(this.parentElement)">
+      <span class="tag tag-check">Check</span>
+      <span class="rule-title-text">Long-form Executor powers included · Single clients remove joint spousal powers</span>
+      <svg class="rule-chevron" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+    </div>
+    <div class="rule-body">
+      <ul>
+        <li>Confirm the long-form list of Executor powers is included.</li>
+        <li>For single clients: Remove all references to joint executor powers with a spouse.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="group-label">Article: General Provisions</div>
+
+  <div class="rule-card">
+    <div class="rule-head" onclick="toggleCard(this.parentElement)">
+      <span class="tag tag-remove">Remove</span>
+      <span class="rule-title-text">Delete "Maximum Term for Trusts" section</span>
+      <svg class="rule-chevron" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+    </div>
+    <div class="rule-body"><p>Always remove the section titled "Maximum Term for Trusts."</p></div>
+  </div>
+
+  <div class="rule-card">
+    <div class="rule-head" onclick="toggleCard(this.parentElement)">
+      <span class="tag tag-check">Check</span>
+      <span class="rule-title-text" data-scenarios="married">Survivorship Presumption — married couples</span>
+      <svg class="rule-chevron" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+    </div>
+    <div class="rule-body">
+      <p>If married couple, each should be deemed to have predeceased the other. It should read:</p>
+      <div class="copy-wrap"><div class="copy-block">For purposes of this Will, if my [wife/husband] and I die under circumstances in which the order of our deaths cannot be established, each of us shall be deemed to have predeceased the other. Any other beneficiary will be considered to have predeceased me if the beneficiary dies within 30 days after my death.</div><button class="copy-btn" onclick="copyBlock(this)">Copy</button></div>
+    </div>
+  </div>
+
+  <div class="rule-card">
+    <div class="rule-head" onclick="toggleCard(this.parentElement)">
+      <span class="tag tag-check">Check</span>
+      <span class="rule-title-text">Applicable Law — correct "Will will be" to "Will shall be"</span>
+      <svg class="rule-chevron" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+    </div>
+    <div class="rule-body"><p>In the Applicable Law subsection, change "Will will be" to "Will shall be."</p></div>
+  </div>
+
+  <div class="rule-card">
+    <div class="rule-head" onclick="toggleCard(this.parentElement)">
+      <span class="tag tag-remove">Remove</span>
+      <span class="rule-title-text">Remove unnecessary general provisions sections</span>
+      <svg class="rule-chevron" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+    </div>
+    <div class="rule-body">
+      <ul>
+        <li>"Adopted and Afterborn" section, if no individuals are named as beneficiaries</li>
+        <li>"No Contract to Make Will"</li>
+        <li>"Internal Revenue Code," "IRC," or "Code" definitions</li>
+        <li>Other generic definition sections that do not directly serve the plan</li>
+        <li>Section titled "Ancillary Executor" if no out-of-state property</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     SECTION: REVOCABLE LIVING TRUST
+═══════════════════════════════════════════════════════ -->
+<div class="section" id="section-rlt">
+  <div class="section-header">
+    <div class="section-title">Revocable Living Trust</div>
+    <div class="section-subtitle">Customization and refinement by article — use this section after completing the WealthCounsel interview</div>
+    <div class="section-actions">
+      <button class="tool-btn" type="button" onclick="scrollToGuideTarget('rlt-qc')">Jump to QC &amp; Final Touches</button>
+    </div>
+  </div>
+
+  <div class="group-label">Formatting</div>
+
+  <div class="rule-card">
+    <div class="rule-head" onclick="toggleCard(this.parentElement)">
+      <span class="tag tag-format">Format</span>
+      <span class="rule-title-text">Font · Headings · Table of Contents timing</span>
+      <svg class="rule-chevron" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+    </div>
+    <div class="rule-body">
+      <ul>
+        <li>Georgia font — including footers in each section break.</li>
+        <li>Update Table of Contents <strong>only after all drafting and final editing is complete.</strong></li>
+        <li>All Section Headings must fit on one line and include a dash (e.g., "Article 3 – Distribution of Trust Property").</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="rule-card">
+    <div class="rule-head" onclick="toggleCard(this.parentElement)">
+      <span class="tag tag-check">Check</span>
+      <span class="rule-title-text">Trust name conventions · Trustee name length</span>
+      <svg class="rule-chevron" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+    </div>
+    <div class="rule-body">
+      <ul>
+        <li>Trustors with families: <strong>"The [NAME] Family Trust"</strong></li>
+        <li>Trustors with no children or non-family beneficiaries: <strong>"The [NAME] Declaration of Trust"</strong></li>
+        <li>Trustee names: When long, cut middle names when referring to them as trustees (character count matters on forms). Leave middle names when referring to them as Grantors.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="group-label">Article: Establishing Our Trust</div>
+
+  <div class="rule-card">
+    <div class="rule-head" onclick="toggleCard(this.parentElement)">
+      <span class="tag tag-remove">Remove</span>
+      <span class="rule-title-text">All community property references — Ctrl+F "Community"</span>
+      <svg class="rule-chevron" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+    </div>
+    <div class="rule-body">
+      <p>Run Ctrl+F for "Community." References usually appear in:</p>
+      <ul>
+        <li>"Transferring Property to Our Trust" (Establishing the Trust Article)</li>
+        <li>"Addition or Removal of Trust Property" (Establishing the Trust Article)</li>
+        <li>"Survivorship Presumption" (General Provisions)</li>
+        <li>"Effect of Legal Separation or Dissolution of Marriage" (General Provisions)</li>
+      </ul>
+      <p style="margin-top:8px">Ohio is not a community property state.</p>
+    </div>
+  </div>
+
+  <div class="rule-card">
+    <div class="rule-head" onclick="toggleCard(this.parentElement)">
+      <span class="tag tag-situational">Situational</span>
+      <span class="rule-title-text" data-scenarios="prenup married">Add "Marital Property Agreement Controls" — clients with a prenup</span>
+      <svg class="rule-chevron" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+    </div>
+    <div class="rule-body">
+      <p>Add subsection titled "Marital Property Agreement Controls" in Transferring Property to the Trust section:</p>
+      <div class="copy-wrap"><div class="copy-block">Marital Property Agreement Controls
+
+If we have entered into or in the future enter into a marital property agreement, the terms of that agreement will control the characterization of property titled in the name of the trust. In the absence of a marital property agreement, property titled in the name of the trust will be governed by the terms of this trust.</div><button class="copy-btn" onclick="copyBlock(this)">Copy</button></div>
+    </div>
+  </div>
+
+  <div class="rule-card">
+    <div class="rule-head" onclick="toggleCard(this.parentElement)">
+      <span class="tag tag-replace">Replace</span>
+      <span class="rule-title-text" data-scenarios="single">Grantor Trust Status — single clients</span>
+      <svg class="rule-chevron" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+    </div>
+    <div class="rule-body">
+      <p>Clean up all plural/singular references. For single people, replace with:</p>
+      <div class="copy-wrap"><div class="copy-block">By reserving the broad rights and powers set forth herein, I intend to qualify my trust as a Grantor Trust under Internal Revenue Code Sections 671 to 677. This means that, for federal income tax purposes, I will be treated as the owner of all the assets held in my trust during my lifetime, as if I held them in my individual capacity.
+
+During any period that my trust is a Grantor Trust, the Taxpayer Identification Number of my trust will be my Social Security number, in accordance with Treasury Regulation Section 301.6109-1(a)(2).</div><button class="copy-btn" onclick="copyBlock(this)">Copy</button></div>
+    </div>
+  </div>
+
+  <div class="rule-card">
+    <div class="rule-head" onclick="toggleCard(this.parentElement)">
+      <span class="tag tag-replace">Replace</span>
+      <span class="rule-title-text" data-scenarios="married">Grantor Trust Status — married couples</span>
+      <svg class="rule-chevron" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+    </div>
+    <div class="rule-body">
+      <div class="copy-wrap"><div class="copy-block">By reserving the broad rights and powers set forth herein, we intend to qualify our trust as a Grantor Trust under Internal Revenue Code Sections 671 to 677. This means that, for federal income tax purposes, we will be treated as the owner of all the assets held in our trust during our lifetime, as if we held them in our individual capacity.
+
+During any period that our trust is a Grantor Trust, the Taxpayer Identification Number of our trust will be either of our Social Security numbers, in accordance with Treasury Regulation Section 301.6109-1(a)(2).</div><button class="copy-btn" onclick="copyBlock(this)">Copy</button></div>
+    </div>
+  </div>
+
+  <div class="group-label">Article: Trustee Succession</div>
+
+  <div class="rule-card">
+    <div class="rule-head" onclick="toggleCard(this.parentElement)">
+      <span class="tag tag-replace">Replace</span>
+      <span class="rule-title-text">Resignation of a Trustee — replace entire section</span>
+      <svg class="rule-chevron" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+    </div>
+    <div class="rule-body">
+      <div class="scenario-option" data-scenarios="married">
+        <p class="scenario-option-label">Joint / married trust</p>
+        <div class="copy-wrap"><div class="copy-block">A Trustee may resign by giving written notice to either of us. If we are both incapacitated or deceased, a resigning Trustee shall give written notice to the trust's Income Beneficiaries and any other then-serving Trustee.
+
+If none of the individuals named below are willing and able to serve, then upon the resignation of a Trustee, the resigning Trustee may appoint the resigning Trustee's successor as Trustee in the manner set forth in Section 3.09, concurrent with the written notice described above. If the resigning Trustee fails to designate a successor, the other provisions of this Article regarding the filling of a vacant Trustee office will govern.</div><button class="copy-btn" onclick="copyBlock(this)">Copy</button></div>
+      </div>
+      <div class="scenario-option" data-scenarios="single">
+        <p class="scenario-option-label">Individual / single trust</p>
+        <div class="copy-wrap"><div class="copy-block">A Trustee may resign by giving written notice to me. If I am incapacitated or deceased, a resigning Trustee shall give written notice to the trust's Income Beneficiaries and any other then-serving Trustee.
+
+If none of the individuals named below are willing and able to serve, then upon the resignation of a Trustee, the resigning Trustee may appoint the resigning Trustee's successor as Trustee in the manner set forth in Section 3.09, concurrent with the written notice described above. If the resigning Trustee fails to designate a successor, the other provisions of this Article regarding the filling of a vacant Trustee office will govern.</div><button class="copy-btn" onclick="copyBlock(this)">Copy</button></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="rule-card">
+    <div class="rule-head" onclick="toggleCard(this.parentElement)">
+      <span class="tag tag-remove">Remove</span>
+      <span class="rule-title-text">Delete resignation vacancy clause — both Alive and After Death sections</span>
+      <svg class="rule-chevron" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+    </div>
+    <div class="rule-body"><p>Delete the following language from both the "Trustee Succession While Alive" and "Trustee Succession After Death" sections:<br><br>"But if a Trustee vacancy arises due to resignation, the previous provisions apply only if the resigning Trustee fails to appoint a successor Trustee in the manner more fully set forth in Section 2.01."</p></div>
+  </div>
+
+  <div class="rule-card">
+    <div class="rule-head" onclick="toggleCard(this.parentElement)">
+      <span class="tag tag-format">Format</span>
+      <span class="rule-title-text">Successor Trustees in paragraph form — both Incapacity and Death sections</span>
+      <svg class="rule-chevron" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+    </div>
+    <div class="rule-body"><p>Make Successor Trustees a paragraph instead of bullet points in both the Incapacity and Death sections. If Grantors will not serve as Trustee, change the default language that implies they will. Also update the Trust Summary and Certificate of Trust.</p></div>
+  </div>
+
+  <div class="rule-card">
+    <div class="rule-head" onclick="toggleCard(this.parentElement)">
+      <span class="tag tag-add">Add</span>
+      <span class="rule-title-text">Trustees of the Separate Trusts — subsection (b) [if inheritance held in trust]</span>
+      <svg class="rule-chevron" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+    </div>
+    <div class="rule-body">
+      <p>If inheritance will be held in trust, ADD new subsection (b). This language may already be in subsection (a) — if so, just create a new (b). Correct the section cross-reference at the end of the first paragraph to reference subsection (a). Fill in: [INSERT NUMERICAL AGE_CO-TRUSTEE] and [INSERT NUMERICAL AGE_SOLE TRUSTEE].</p>
+      <div class="copy-wrap"><div class="copy-block">(b) Trustees of the Separate Trusts
+
+After both of our deaths, [Children's names] may immediately serve as the Trustee of the Separate Trust created for their benefit.
+
+Additionally, any other Primary Beneficiary of a separate trust created under this instrument, at any time after attaining ([INSERT NUMERICAL AGE_CO-TRUSTEE]) years of age, may appoint himself or herself as a Co-Trustee of his or her separate trust to serve with the then-serving successor Trustee. Upon reaching ([INSERT NUMERICAL AGE_SOLE TRUSTEE]) years of age, the Primary Beneficiary may serve as sole Trustee and may name any one or more individual or corporate fiduciaries to serve as current or successor Trustee or Co-Trustee. The Primary Beneficiary shall also have the power to remove any Trustee or Co-Trustee that they have appointed at any time. Any time the beneficiary is serving as a Trustee of his or her trust before reaching ([INSERT NUMERICAL AGE_SOLE TRUSTEE]) years of age, at least one other Trustee must be serving with the beneficiary. If a Trustee vacancy occurs and no designated successor Trustee is available to serve, the vacancy is to be filled as provided in Subsection (a) of this Section.
+
+Notwithstanding the foregoing, if at any time before the Primary Beneficiary attains age ([INSERT NUMERICAL AGE_SOLE TRUSTEE]) the then-serving Trustee determines, in the Trustee's sole and absolute discretion, that the Primary Beneficiary has not yet demonstrated sufficient judgment or maturity, or that for any other reason it would not be in the Primary Beneficiary's best interests to serve as Co-Trustee or sole Trustee, or to hold the authority to designate successor Trustees, the Trustee may defer the date on which the Primary Beneficiary may take any such action. Such deferral shall be made by a written instrument acknowledged by the Trustee and preserved with the trust records, and the Trustee shall deliver a copy of that instrument to the Primary Beneficiary, which copy shall reasonably state the basis for the Trustee's decision. The deferral may be for a stated period or indefinite. At any time, the Trustee may terminate the deferral and permit the Primary Beneficiary to exercise the deferred rights by a subsequent acknowledged written instrument preserved with the trust records and provided to the Primary Beneficiary. Nothing in this paragraph alters the requirement, if any, that a second Trustee serve with the Primary Beneficiary prior to age ([INSERT NUMERICAL AGE_SOLE TRUSTEE]).
+
+If the interest of a beneficiary will be merged into a life estate or an estate for years because the beneficiary is serving as sole Trustee, the beneficiary must appoint a Co-Trustee to avoid this merger. Similarly, if the interest of a beneficiary becomes or is likely to become subject to the claims of any creditor or to legal process as a result of serving as sole Trustee, the beneficiary must appoint an Independent Trustee to serve as Co-Trustee.</div><button class="copy-btn" onclick="copyBlock(this)">Copy</button></div>
+    </div>
+  </div>
+
+  <div class="rule-card">
+    <div class="rule-head" onclick="toggleCard(this.parentElement)">
+      <span class="tag tag-situational">Situational</span>
+      <span class="rule-title-text" data-scenarios="married blended business">Spousal waiver clause — second marriage, creditor risk, large inheritance, or closely held business</span>
+      <svg class="rule-chevron" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+    </div>
+    <div class="rule-body">
+      <p><strong>When to use:</strong> Second marriage, meaningful divorce/creditor risk, large inheritance, or closely held business interests — when grantor wants added guardrails against spousal pressure. Pair with an independent distribution decision-maker and a preference for direct payments to providers. The clause alone will not prevent commingling after distributions.</p>
+      <div class="copy-wrap"><div class="copy-block">Notwithstanding any other provision of this trust, a beneficiary shall not serve as the sole Trustee of the trust created for his or her benefit unless and until such beneficiary, if married or contemplating marriage, has obtained a signed agreement from his or her spouse or fiancé(e), as applicable, irrevocably waiving, disclaiming, and relinquishing any and all rights, title, or claims, whether statutory, equitable, or otherwise, to the property of the trust, including but not limited to any claims arising under community property, equitable distribution, marital property, or similar laws. Such agreement shall be in a form acceptable to the then-serving Trustee and shall be retained with the trust records. In the event that the spouse or fiancé(e) refuses to execute such agreement, the beneficiary shall not be permitted to serve as sole Trustee of the trust created for his or her benefit and must instead appoint an Independent Trustee, as defined in Internal Revenue Code Section 672(c), who shall serve as the Co-Trustee of the trust. If the beneficiary is serving as sole Trustee of the trust at the time of the spouse or fiancé(e)'s refusal to sign, the beneficiary shall immediately appoint an Independent Co-Trustee as defined in the previous sentence or resign as Trustee and appoint an Independent Trustee.</div><button class="copy-btn" onclick="copyBlock(this)">Copy</button></div>
+    </div>
+  </div>
+
+  <div class="rule-card">
+    <div class="rule-head" onclick="toggleCard(this.parentElement)">
+      <span class="tag tag-situational">Situational</span>
+      <span class="rule-title-text" data-scenarios="snt">SNT restriction — beneficiary cannot serve as trustee of own SNT</span>
+      <svg class="rule-chevron" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+    </div>
+    <div class="rule-body">
+      <div class="copy-wrap"><div class="copy-block">(c) Restriction on Serving as Trustee
+
+The beneficiary of any Supplemental Needs Trust created under this instrument shall not be eligible to serve as the Trustee of their Trust.</div><button class="copy-btn" onclick="copyBlock(this)">Copy</button></div>
+    </div>
+  </div>
+
+  <div class="rule-card">
+    <div class="rule-head" onclick="toggleCard(this.parentElement)">
+      <span class="tag tag-situational">Situational</span>
+      <span class="rule-title-text">Different trustees for sub-trusts (e.g., grandchildren's trusts) — see McWilliams for example</span>
+      <svg class="rule-chevron" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+    </div>
+    <div class="rule-body">
+      <div class="copy-wrap"><div class="copy-block">(c) Trustees For Grandchildren's Trusts
+
+[PARENT 1] shall serve as Trustee of the trusts established for [GRANDCHILD 1], if she is not able to serve as Trustee then [ALTERNATE TRUSTEE] shall serve as Trustee. [PARENT 2] shall serve as Trustee of the trusts established for [GRANDCHILD 2], if he is not able to serve as Trustee then [ALTERNATE TRUSTEE] shall serve as Trustee.</div><button class="copy-btn" onclick="copyBlock(this)">Copy</button></div>
+    </div>
+  </div>
+
+  <div class="rule-card">
+    <div class="rule-head" onclick="toggleCard(this.parentElement)">
+      <span class="tag tag-remove">Remove</span>
+      <span class="rule-title-text">Delete corporate fiduciary independence requirement</span>
+      <svg class="rule-chevron" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+    </div>
+    <div class="rule-body"><p>Delete from "Appointment of a Co-Trustee/Corporate Fiduciaries" section: "Any corporate fiduciary serving under this instrument as a Trustee must be a bank, trust company, or public charity that is qualified to act as a fiduciary under applicable federal or state law and must be an Independent Trustee."</p></div>
+  </div>
+
+  <div class="rule-card">
+    <div class="rule-head" onclick="toggleCard(this.parentElement)">
+      <span class="tag tag-add">Add</span>
+      <span class="rule-title-text">Add "Rights and Obligations of Successor Trustees" — new section</span>
+      <svg class="rule-chevron" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+    </div>
+    <div class="rule-body">
+      <div class="copy-wrap"><div class="copy-block">Rights and Obligations of Successor Trustees
+
+Each successor Trustee serving under this instrument, whether corporate or individual, will have all of the title, rights, powers, and privileges granted to the initial Trustee named under this instrument. In addition, each successor Trustee will be subject to all of the restrictions imposed upon, as well as to all discretionary and ministerial obligations and duties given to the initial Trustee named under this instrument.</div><button class="copy-btn" onclick="copyBlock(this)">Copy</button></div>
+    </div>
+  </div>
+
+  <div class="rule-card">
+    <div class="rule-head" onclick="toggleCard(this.parentElement)">
+      <span class="tag tag-situational">Situational</span>
+      <span class="rule-title-text" data-scenarios="foreign-trustee">Foreign trustee risk — Option A (hard prohibition) or Option B (preference with safeguards)</span>
+      <svg class="rule-chevron" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+    </div>
+    <div class="rule-body">
+      <p>If there is meaningful risk that a successor trustee may reside outside the U.S., include to avoid negative tax consequences under the "foreign trust rules" of the IRC. Trust must qualify as a U.S. Person under IRC § 7701(a)(30)(E).</p>
+      <p style="margin-top:8px"><strong>Option A — Hard prohibition:</strong></p>
+      <div class="copy-wrap"><div class="copy-block">No Foreign Trustee Permitted to Serve
+
+If the Trustee I nominate to serve is a foreign national or a citizen of the United States who is not residing in the United States, my Trust may be subject to the "foreign trust rules" of the Internal Revenue Code.
+
+I intend that all trusts created by this instrument qualify as "United States Persons" under IRC Section 7701(a)(30)(E), and one or more United States Persons shall always have the authority to control all substantial decisions under this instrument. A person who is not a "United States Person" [as defined in IRC Section 7701(a)(30)(A) through (C)] shall not serve as a Trustee or Trust Protector, and any power, fiduciary or otherwise, that a person who is not a United States Person may hold shall be effective only to the extent such power is not the power to make a "substantial decision," as defined in Treasury Regulation Section 301.7701-7, or elsewhere. Furthermore, any person who does not reside in one of the fifty (50) states of the United States shall be disqualified from serving as Trustee or Trust Protector of any trust created under this instrument, and the nomination shall pass to the next-named Trustee who is not a foreign national.</div><button class="copy-btn" onclick="copyBlock(this)">Copy</button></div>
+      <p style="margin-top:12px"><strong>Option B — Preference with structural safeguards:</strong></p>
+      <div class="copy-wrap"><div class="copy-block">United States Trust Status
+
+It is my intent that all trusts created by this instrument qualify as "United States Persons" under IRC Section 7701(a)(30)(E), and that one or more "United States Persons" (as defined in IRC Section 7701(a)(30)(A) through (C)) at all times have the authority to control all "substantial decisions" within the meaning of Treasury Regulation Section 301.7701-7 (or any successor provision).
+
+It is my strong preference that no person who is not a United States Person serve as Trustee or Trust Protector of any trust created under this instrument. It is also my strong preference that any Trustee or Trust Protector reside in one of the fifty (50) states of the United States.
+
+Notwithstanding these preferences, the appointment or service of a person who is not a United States Person, or who does not reside in one of the fifty (50) states, shall not be invalid solely by reason of that status or residence; however, any power, whether fiduciary or otherwise, held by such person shall be exercisable only to the extent that (i) the exercise of the power would not constitute control of any "substantial decision," and (ii) one or more United States Persons retain exclusive authority to control all substantial decisions. To the extent necessary to carry out this intent, any provision of this instrument shall be construed to allocate and/or limit powers so that the substantial decisions are controlled by one or more United States Persons.
+
+In making any appointment to fill a vacancy or to name a successor Trustee or Trust Protector, the nominating person(s) shall give priority to candidates who are United States Persons and residents of one of the fifty (50) states, consistent with the foregoing intent and preferences.</div><button class="copy-btn" onclick="copyBlock(this)">Copy</button></div>
+    </div>
+  </div>
+
+  <div class="group-label">Article: Administration During Incapacity</div>
+
+  <div class="rule-card">
+    <div class="rule-head" onclick="toggleCard(this.parentElement)">
+      <span class="tag tag-remove">Remove</span>
+      <span class="rule-title-text">If no children — remove "Distributions for Benefit of My Dependents"; leave spouse if married</span>
+      <svg class="rule-chevron" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+    </div>
+    <div class="rule-body"><p>Remove references to dependents if no children, but leave spouse if married.</p></div>
+  </div>
+
+  <div class="group-label">Article: Administration Upon Death</div>
+
+  <div class="rule-card">
+    <div class="rule-head" onclick="toggleCard(this.parentElement)">
+      <span class="tag tag-replace">Replace</span>
+      <span class="rule-title-text" data-scenarios="single">Single clients — replace "The Trust Becomes Irrevocable" with "Administrative Trust"</span>
+      <svg class="rule-chevron" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+    </div>
+    <div class="rule-body">
+      <div class="copy-wrap"><div class="copy-block">Administrative Trust
+
+After my death and before the distribution of trust property as provided in the subsequent Articles of this trust, the trust will be an administrative trust, but may continue to be known as the ______________ Trust. The administrative trust will continue for a reasonable period of time necessary to complete the administrative tasks set forth in this Article.</div><button class="copy-btn" onclick="copyBlock(this)">Copy</button></div>
+    </div>
+  </div>
+
+  <div class="rule-card">
+    <div class="rule-head" onclick="toggleCard(this.parentElement)">
+      <span class="tag tag-add">Add</span>
+      <span class="rule-title-text">Add for ALL clients — Payment of Charitable Bequests + Retirement Plan restriction sections</span>
+      <svg class="rule-chevron" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+    </div>
+    <div class="rule-body">
+      <div class="copy-wrap"><div class="copy-block">Payment of Charitable Bequests
+
+To the extent possible, my Trustee must make all charitable distributions from property that constitutes income in respect of a decedent (IRD) as that term is defined under the U.S. income tax laws. The distribution will qualify for the income tax charitable deduction under Internal Revenue Code Section 642(c)(1), (2), as amended.</div><button class="copy-btn" onclick="copyBlock(this)">Copy</button></div>
+      <div class="copy-wrap" style="margin-top:10px"><div class="copy-block">Restrictions on Certain Payments from Retirement Plans
+
+Qualified retirement benefits payable to the trust may not be used or applied on or after the designation date for payment of my debts, taxes, expenses of administration, or other claims against my estate, or for payment of estate, inheritance, or similar transfer taxes due because of my death, other than those directly attributable to and the legal obligation of a particular qualified retirement plan. This Section does not apply to any bequest or expense that is specifically directed to be funded with qualified retirement benefits.</div><button class="copy-btn" onclick="copyBlock(this)">Copy</button></div>
+    </div>
+  </div>
+
+  <div class="group-label">Article: Family Trust</div>
+
+  <div class="rule-card">
+    <div class="rule-head" onclick="toggleCard(this.parentElement)">
+      <span class="tag tag-note">Note</span>
+      <span class="rule-title-text" data-scenarios="married">Include for married couples above $5M; skip below $3M; always include Marital Trust</span>
+      <svg class="rule-chevron" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+    </div>
+    <div class="rule-body"><p>Generally include only when assets exceed $5M. Acceptable in the $3–5M range. Below $3M — omit, as it adds unnecessary complications. You will always have the Marital Trust for married couples regardless.</p></div>
+  </div>
+
+  <div class="group-label">Article: Descendants' Trusts</div>
+
+  <div class="rule-card">
+    <div class="rule-head" onclick="toggleCard(this.parentElement)">
+      <span class="tag tag-format">Format</span>
+      <span class="rule-title-text">Use children's names — not generic "Descendants" language</span>
+      <svg class="rule-chevron" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+    </div>
+    <div class="rule-body">
+      <p>In the Division of Trust Property section, use kids' names instead of general "Descendant's" language. If only one child, DELETE paragraphs and ADD:</p>
+      <div class="copy-wrap"><div class="copy-block">The Trustee shall hold and administer my remaining trust property for my [RELATION], [CHILD'S NAME], per stirpes, as provided in the next Section.</div><button class="copy-btn" onclick="copyBlock(this)">Copy</button></div>
+    </div>
+  </div>
+
+  <div class="rule-card">
+    <div class="rule-head" onclick="toggleCard(this.parentElement)">
+      <span class="tag tag-remove">Remove</span>
+      <span class="rule-title-text">If adult children become immediate trustee of own trust — delete discretionary distribution and withdrawal sections</span>
+      <svg class="rule-chevron" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+    </div>
+    <div class="rule-body"><p>If adult child beneficiaries will immediately become trustee of their own trust, DELETE the "Guidelines for Discretionary Distributions" section and the "Right to Withdraw Principal" section.</p></div>
+  </div>
+
+  <div class="rule-card">
+    <div class="rule-head" onclick="toggleCard(this.parentElement)">
+      <span class="tag tag-note">Note</span>
+      <span class="rule-title-text">General Needs Trust with mandatory 5% distribution — use Unitrust Amount structure</span>
+      <svg class="rule-chevron" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+    </div>
+    <div class="rule-body"><p>Do not use the standard "discretionary income and principal" distribution combined with a "5 or 5 power" at Trust Termination. That approach produces technically similar tax results but creates overly complex IRS-speak withdrawal language.<br><br>Instead: Start with a General Needs Trust. After the screen regarding whether descendants are beneficiaries, select the options that generate a <strong>Unitrust Amount</strong> distribution structure. This produces language requiring the Trustee to distribute a fixed annual percentage (typically 5%) directly to the beneficiary, with additional discretionary distributions permitted if appropriate.</p></div>
+  </div>
+
+  <div class="group-label">Article: Remote Contingent Beneficiaries</div>
+
+  <div class="rule-card">
+    <div class="rule-head" onclick="toggleCard(this.parentElement)">
+      <span class="tag tag-remove">Remove</span>
+      <span class="rule-title-text">Remove article when many multi-generational beneficiaries — update Trust Summary article references</span>
+      <svg class="rule-chevron" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+    </div>
+    <div class="rule-body"><p>Remove when there are many beneficiaries who can take, particularly if they are of different generations — it is very unlikely nobody will take, and the default mirrors Ohio law anyway. If removing, update Trust Summary article references.</p></div>
+  </div>
+
+  <div class="group-label">Article: Administration of Trusts for Underage/Incapacitated Beneficiaries</div>
+
+  <div class="rule-card">
+    <div class="rule-head" onclick="toggleCard(this.parentElement)">
+      <span class="tag tag-situational">Situational</span>
+      <span class="rule-title-text" data-scenarios="medicaid snt">Medicaid — protective SNT provision when any beneficiary may be on Medicaid</span>
+      <svg class="rule-chevron" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+    </div>
+    <div class="rule-body">
+      <p>In WealthCounsel Simple Trust, done in the Administration of Trusts for Underage and Incapacitated Beneficiaries interview selection. Replace first paragraph with:</p>
+      <div class="copy-wrap"><div class="copy-block">If under any provision of this trust the Trustee is directed to distribute to or for the benefit of any beneficiary when that person is receiving or applying for needs-based government benefits or on a Medicaid Spenddown Plan, the Trustee shall retain and administer the trust property as follows:</div><button class="copy-btn" onclick="copyBlock(this)">Copy</button></div>
+      <p style="margin-top:10px">Remove all references to Care Manager. Reference: Orlock (married, joint trust); Freimark (married, separate trusts); Hummer (single individual trust). Review Section 12.01 in the Franke Trust for context on what the text looks like.</p>
+    </div>
+  </div>
+
+  <div class="group-label">Article: Retirement Plans</div>
+
+  <div class="rule-card">
+    <div class="rule-head" onclick="toggleCard(this.parentElement)">
+      <span class="tag tag-replace">Replace</span>
+      <span class="rule-title-text">Replace "Each Individual Beneficiary Shall be Deemed an Eligible Designated Beneficiary" with Stretch language</span>
+      <svg class="rule-chevron" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+    </div>
+    <div class="rule-body">
+      <p><strong>Important:</strong> When adding a new article for Retirement Accounts, be sure to add the Article and update Article numbers in the Trust Summary.</p>
+      <p style="margin-top:8px">Double-check all references to "Husband" or "Wife" in the Distributions from Qualified Retirement Plans to a Trust section.</p>
+      <div class="scenario-option" data-scenarios="married">
+        <p class="scenario-option-label">Married clients</p>
+        <div class="copy-wrap"><div class="copy-block">Stretch of Retirement Benefits
+
+It is our express intent that, to the maximum extent permitted by applicable law, each beneficiary of any trust established under this instrument who becomes entitled to receive distributions from any qualified retirement plan, individual retirement account (IRA), or other tax-deferred retirement arrangement (collectively, "Retirement Benefits") shall be permitted to receive such Retirement Benefits over the longest period allowed by Section 401(a)(9) of the Internal Revenue Code and any applicable Treasury Regulations or successor provisions.
+
+The Trustee is directed to administer any trust receiving Retirement Benefits in a manner that enables each beneficiary to "stretch" required minimum distributions over the maximum period permitted by law, based on the beneficiary's status as a designated beneficiary or eligible designated beneficiary, as defined by the Internal Revenue Code. The Trustee is authorized and directed to take all actions, make all elections, and provide all documentation necessary or advisable to achieve this result, including but not limited to providing required trust documentation to plan administrators or custodians.
+
+If at any time the law changes or the applicable plan or account imposes different requirements, the Trustee shall administer the trust so as to achieve the maximum permissible deferral of distributions, consistent with our intent as stated herein.</div><button class="copy-btn" onclick="copyBlock(this)">Copy</button></div>
+      </div>
+      <div class="scenario-option" data-scenarios="single">
+        <p class="scenario-option-label">Single clients</p>
+        <div class="copy-wrap"><div class="copy-block">Stretch of Retirement Benefits
+
+It is my express intent that, to the maximum extent permitted by applicable law, each beneficiary of any trust established under this instrument who becomes entitled to receive distributions from any qualified retirement plan, individual retirement account (IRA), or other tax-deferred retirement arrangement (collectively, "Retirement Benefits") shall be permitted to receive such Retirement Benefits over the longest period allowed by Section 401(a)(9) of the Internal Revenue Code and any applicable Treasury Regulations or successor provisions.
+
+The Trustee is directed to administer any trust receiving Retirement Benefits in a manner that enables each beneficiary to "stretch" required minimum distributions over the maximum period permitted by law, based on the beneficiary's status as a designated beneficiary or eligible designated beneficiary, as defined by the Internal Revenue Code. The Trustee is authorized and directed to take all actions, make all elections, and provide all documentation necessary or advisable to achieve this result, including but not limited to providing required trust documentation to plan administrators or custodians.
+
+If at any time the law changes or the applicable plan or account imposes different requirements, the Trustee shall administer the trust so as to achieve the maximum permissible deferral of distributions, consistent with my intent as stated herein.</div><button class="copy-btn" onclick="copyBlock(this)">Copy</button></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="group-label">Article: Trust Administration</div>
+
+  <div class="rule-card">
+    <div class="rule-head" onclick="toggleCard(this.parentElement)">
+      <span class="tag tag-check">Check</span>
+      <span class="rule-title-text">Add "the" before "Ohio Principal and Income Act" — twice</span>
+      <svg class="rule-chevron" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+    </div>
+    <div class="rule-body"><p>In Section titled "Determination of Principal and Income," add "the" before "Ohio Principal and Income Act" — appears twice in this section.</p></div>
+  </div>
+
+  <div class="rule-card">
+    <div class="rule-head" onclick="toggleCard(this.parentElement)">
+      <span class="tag tag-add">Add</span>
+      <span class="rule-title-text">Add "No Bond" and "Employment of Professionals" sections — all trusts</span>
+      <svg class="rule-chevron" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+    </div>
+    <div class="rule-body">
+      <div class="copy-wrap"><div class="copy-block">No Bond
+
+My Trustee is not required to furnish any bond for the faithful performance of the Trustee's duties unless required by a court of competent jurisdiction, and only if the court finds that a bond is needed to protect the beneficiaries' interests. No surety will be required on any bond required by any law or court rule, unless the court specifies its necessity.</div><button class="copy-btn" onclick="copyBlock(this)">Copy</button></div>
+      <div class="copy-wrap" style="margin-top:10px"><div class="copy-block">Employment of Professionals
+
+My Trustee may appoint, employ, and remove investment advisors, accountants, auditors, depositories, custodians, brokers, consultants, attorneys, advisors, agents, and employees to advise or assist in the performance of my Trustee's duties. My Trustee may act on the recommendations of the persons or entities employed, with or without independent investigation.
+
+My Trustee may reasonably compensate an individual or entity employed to assist or advise my Trustee, regardless of any other relationship existing between the individual or entity and my Trustee.
+
+My Trustee may compensate providers of contracted services at the usual rate out of the trust's income or principal, as my Trustee deems advisable. My Trustee may compensate an individual or entity employed to assist or advise my Trustee without diminishing the compensation the Trustee is entitled to under this trust. A Trustee who is a partner, stockholder, officer, director, or corporate affiliate in any entity employed to assist or advise my Trustee may still receive the Trustee's share of the compensation paid to the entity.</div><button class="copy-btn" onclick="copyBlock(this)">Copy</button></div>
+    </div>
+  </div>
+
+  <div class="rule-card">
+    <div class="rule-head" onclick="toggleCard(this.parentElement)">
+      <span class="tag tag-remove">Remove</span>
+      <span class="rule-title-text">Usually delete — subsection (c) Insurance Policy on the Life of the Trustee</span>
+      <svg class="rule-chevron" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+    </div>
+    <div class="rule-body"><p>In the "Limitations on the Trustee's Powers" section, usually delete subsection (c) regarding insurance on the trustee's life.</p></div>
+  </div>
+
+  <div class="rule-card">
+    <div class="rule-head" onclick="toggleCard(this.parentElement)">
+      <span class="tag tag-situational">Situational</span>
+      <span class="rule-title-text" data-scenarios="business">Business interests — Specific Trustee Powers with Respect to [Business Name]</span>
+      <svg class="rule-chevron" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+    </div>
+    <div class="rule-body">
+      <p>If assigning a business interest to the trust, add: (1) new subsection "Specific Trustee Powers with Respect to [BUSINESS NAME]" and (2) "Subchapter S Corporation Stock Provisions" if applicable. For professional business interests (dental, architectural, etc.) where trust is a TOD beneficiary, include:</p>
+      <div class="copy-wrap"><div class="copy-block">Specific Trustee Powers with Respect to [Business Name]
+
+If the trust owns or acquires an interest in a professional practice, such as [Business Name], the Trustee may exercise the authority and discretion under this Section. The powers granted in this Section are in addition to all other powers granted to the Trustee in this trust.
+
+Definition of Professional Practice
+For purposes of this Article, the term professional practice means an interest in a [profession], in which I participate as a licensed person. The term includes my interest in any corporation, partnership, sole proprietorship, limited liability company, joint venture, or other entity that is engaged in providing the kind of professional services that I am licensed to practice.
+
+Any reference to professional practice also includes all real estate, equipment, furnishings, receivables, client or patient records, office records, and vehicles, but does not include any interest in any retirement plan that is sponsored by the professional practice.
+
+Sale of the Practice
+Following my death or in the event of my permanent disability, I prefer that the Trustee sell any interest in a professional practice owned by the trust as quickly as practicable in order to protect the value of the practice. The Trustee may sell my interest in the professional practice on terms the Trustee considers appropriate.
+
+In order to consummate the sale as quickly as practicable, the incoming Trustee may negotiate with potential buyers before formally serving as Trustee, but the sale may not be concluded until the Trustee is formally serving.
+
+Appointment of Independent Special Trustee
+Pending a sale of the professional practice, the Trustee may appoint an Independent Special Trustee licensed under the laws that regulate the professional practice. The Trustee may delegate to the Independent Special Trustee the authority to manage, operate, or to wind up the practice in the manner required by law.
+
+(d) Client or Patient Records
+The Trustee is forbidden from reading or reviewing client or patient records and files of the professional practice if doing so would violate my professional obligation to the client or patient. The Trustee may employ another licensed professional or professional assistant to read and review client or patient records for any appropriate purpose. The Trustee will ensure that the review is conducted consistent with the best ethical practices of my profession, safeguarding confidentiality and avoiding conflicts of interest.
+
+(e) Trustee Compensation
+In addition to the compensation set forth in [Section titled "Trustee Compensation"], the Trustee may receive additional reasonable compensation for services in connection with the operation, sale, or winding up of the professional practice. The Trustee may be compensated directly from the professional practice, the trust, or both.
+
+(f) Conflicts of Interest
+Any Trustee, including any Independent Special Trustee, may exercise all of the powers granted in this trust, even though the Trustee may be involved with or have a personal interest in the professional practice.</div><button class="copy-btn" onclick="copyBlock(this)">Copy</button></div>
+      <p style="margin-top:10px">Also REVISE the "Appointment of Independent Special Trustee" section if the trust is a TOD beneficiary of a professional organization requiring licensed owners. Replace the first paragraph of that section with:</p>
+      <div class="copy-wrap" style="margin-top:8px"><div class="copy-block">If the Trustee of any trust created under this instrument is unwilling or unable to act with respect to any trust property or any provisions of this instrument for any reason, the Trustee may name a corporate fiduciary or an individual to act as an Independent Special Trustee with respect to the property or provision. If the Trust acquires an ownership interest in [Business Entity], the Trustee shall appoint a [specialist: i.e., dentist, accountant, architect, etc.] as the Independent Special Trustee to manage the shares of this [practice/firm, etc.].
+
+The appointing Trustee may revoke the appointment at will.</div><button class="copy-btn" onclick="copyBlock(this)">Copy</button></div>
+    </div>
+  </div>
+
+  <div class="group-label">Article: General Provisions</div>
+
+  <div class="rule-card">
+    <div class="rule-head" onclick="toggleCard(this.parentElement)">
+      <span class="tag tag-check">Check</span>
+      <span class="rule-title-text" data-scenarios="married">Survivorship Presumption — married couples</span>
+      <svg class="rule-chevron" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+    </div>
+    <div class="rule-body">
+      <div class="copy-wrap"><div class="copy-block">If [my wife/my husband/we] die under circumstances in which the order of our deaths cannot be established, each of us shall be deemed to have predeceased the other.</div><button class="copy-btn" onclick="copyBlock(this)">Copy</button></div>
+    </div>
+  </div>
+
+  <div class="rule-card">
+    <div class="rule-head" onclick="toggleCard(this.parentElement)">
+      <span class="tag tag-situational">Situational</span>
+      <span class="rule-title-text" data-scenarios="married blended">Effect of Legal Separation or Dissolution — keep for second marriages with separate kids; delete for joint children</span>
+      <svg class="rule-chevron" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+    </div>
+    <div class="rule-body"><p>DELETE if joint children. KEEP if second marriage with separate children.</p></div>
+  </div>
+
+  <div class="rule-card">
+    <div class="rule-head" onclick="toggleCard(this.parentElement)">
+      <span class="tag tag-remove">Remove</span>
+      <span class="rule-title-text">Delete "Adopted and Afterborn Persons" if no per stirpes designations · Delete "Antilapse Statutes"</span>
+      <svg class="rule-chevron" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+    </div>
+    <div class="rule-body">
+      <ul>
+        <li>Delete "Adopted and Afterborn Persons" if there are no per stirpes designations in the trust.</li>
+        <li>Delete the "Antilapse Statutes" section — no Ohio or other antilapse statute should be applied to construe any trust provision.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="group-label" id="rlt-qc">QC &amp; Final Touches</div>
+
+  <div class="step-card"><div class="step-num">1</div><div class="step-body"><strong>Update all fields in WealthCounsel Ribbon</strong> before finalizing any document.</div></div>
+  <div class="step-card"><div class="step-num">2</div><div class="step-body"><strong>Run Ctrl+F</strong> for unresolved error codes: "Error! Bookmark not defined" and "UNANSWERED." Correct all instances before the document leaves drafting.</div></div>
+  <div class="step-card"><div class="step-num">3</div><div class="step-body"><strong>Update Table of Contents</strong> in the trust — only after all drafting and editing is complete.</div></div>
+  <div class="step-card"><div class="step-num">4</div><div class="step-body"><strong>Verify all article/section cross-references</strong> in the Trust Summary match the final trust document exactly. Update all subsequent article numbers any time a new article is added.</div></div>
+  <div class="step-card"><div class="step-num">5</div><div class="step-body"><strong>Complete the Trust Summary</strong> after the trust document is finalized. Use it at signing meetings and during client communication.</div></div>
+  <div class="step-card"><div class="step-num">6</div><div class="step-body"><strong>Add witness attestation</strong> after the notary block in the trust (see below).</div></div>
+
+  <div class="rule-card" style="margin-top:4px">
+    <div class="rule-head" onclick="toggleCard(this.parentElement)">
+      <span class="tag tag-add">Add</span>
+      <span class="rule-title-text">Witness attestation — after notary block in the trust</span>
+      <svg class="rule-chevron" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+    </div>
+    <div class="rule-body">
+      <div class="copy-wrap"><div class="copy-block">We, _______________________ and _______________________, state that the Grantor declared the instrument to be the Grantor's trust and signed it in our presence. We each signed the instrument as a witness in the presence of the Grantor and of each other.
+
+
+_________
+Witness
+20133 Farnsleigh Road
+Shaker Heights, Ohio 44122
+
+
+___________________________
+Witness
+20133 Farnsleigh Road
+Shaker Heights, Ohio 44122</div><button class="copy-btn" onclick="copyBlock(this)">Copy</button></div>
+    </div>
+  </div>
+
+  <div class="group-label">Troubleshooting</div>
+
+  <div class="rule-card">
+    <div class="rule-head" onclick="toggleCard(this.parentElement)">
+      <span class="tag tag-note">Note</span>
+      <span class="rule-title-text">Section references read "Section One.1" — fix via WealthCounsel Ribbon</span>
+      <svg class="rule-chevron" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+    </div>
+    <div class="rule-body"><p>Go to WealthCounsel Ribbon → Style Sheets → "Format with Arial/Times Roman double indent."</p></div>
+  </div>
+
+  <div class="rule-card">
+    <div class="rule-head" onclick="toggleCard(this.parentElement)">
+      <span class="tag tag-note">Note</span>
+      <span class="rule-title-text">Full-length trust in WealthCounsel — when the Simplified Version omits needed language</span>
+      <svg class="rule-chevron" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+    </div>
+    <div class="rule-body"><p>When the Simplified Version of the WealthCounsel Trust omits important language needed for complex or personalized scenarios, locate provisions from either: (1) the Full-Length Trust in WealthCounsel, or (2) a prior trust drafted for a client with a similar fact pattern.<br><br>To access the Full-Length Trust: return to the beginning of the interview, select "Yes" when prompted to "Change the Trust Length," then choose "Full" and answer all applicable interview questions.</p></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     SECTION: CERTIFICATION OF TRUST
+═══════════════════════════════════════════════════════ -->
+<div class="section" id="section-cert">
+  <div class="section-header">
+    <div class="section-title">Certification of Trust</div>
+    <div class="section-subtitle">Formatting and drafting instructions</div>
+  </div>
+
+  <div class="group-label">Formatting</div>
+
+  <div class="rule-card">
+    <div class="rule-head" onclick="toggleCard(this.parentElement)">
+      <span class="tag tag-format">Format</span>
+      <span class="rule-title-text">Font · Margins · Paragraph numbering</span>
+      <svg class="rule-chevron" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+    </div>
+    <div class="rule-body"><p>Georgia font. Margins: <strong>3 inches on the first page, 1.5 inches on all subsequent pages</strong>. Format all paragraphs so that each is properly numbered and aligned (e.g., "1.", "2.", "3.", etc.).</p></div>
+  </div>
+
+  <div class="rule-card">
+    <div class="rule-head" onclick="toggleCard(this.parentElement)">
+      <span class="tag tag-format">Format</span>
+      <span class="rule-title-text">Paragraph 5 — remove sub-heading "a" · italicize trust name</span>
+      <svg class="rule-chevron" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+    </div>
+    <div class="rule-body"><p>Remove sub-heading "a" so only the name of the Trust is listed, and italicize the trust name.</p></div>
+  </div>
+
+  <div class="rule-card">
+    <div class="rule-head" onclick="toggleCard(this.parentElement)">
+      <span class="tag tag-add">Add</span>
+      <span class="rule-title-text">Insert Ohio notary block</span>
+      <svg class="rule-chevron" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+    </div>
+    <div class="rule-body">
+      <div class="copy-wrap"><div class="copy-block">STATE OF OHIO	)
+		) ss.
+COUNTY OF CUYAHOGA	)
+
+This is an acknowledgment. No oath or affirmation was administered to the signer with regard to this notarial act. This foregoing instrument was acknowledged before me this _____________________, 20____, by [Client(s)], as Grantor and as Trustee.
+
+
+
+___________________________
+My commission expires: __________</div><button class="copy-btn" onclick="copyBlock(this)">Copy</button></div>
+    </div>
+  </div>
+
+  <div class="group-label">Drafting</div>
+
+  <div class="rule-card">
+    <div class="rule-head" onclick="toggleCard(this.parentElement)">
+      <span class="tag tag-replace">Replace</span>
+      <span class="rule-title-text">Paragraph 1 — revocability language</span>
+      <svg class="rule-chevron" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+    </div>
+    <div class="rule-body"><p>Change second sentence to read: "The trust is revocable by the Trustors (or Grantors)." <strong>DELETE</strong> "acting jointly and not separately."</p></div>
+  </div>
+
+  <div class="rule-card">
+    <div class="rule-head" onclick="toggleCard(this.parentElement)">
+      <span class="tag tag-replace">Replace</span>
+      <span class="rule-title-text">Paragraph 3 — same incapacity and death trustees</span>
+      <svg class="rule-chevron" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+    </div>
+    <div class="rule-body">
+      <div class="scenario-option" data-scenarios="married">
+        <p class="scenario-option-label">Married clients</p>
+        <div class="copy-wrap"><div class="copy-block">Upon incapacity or death, the non-incapacitated or surviving spouse may serve as sole Trustee. If he or she is unable to serve or continue to serve, for any reason, then the following will serve as successor Trustee, in the order named:</div><button class="copy-btn" onclick="copyBlock(this)">Copy</button></div>
+      </div>
+      <div class="scenario-option" data-scenarios="single">
+        <p class="scenario-option-label">Single clients</p>
+        <div class="copy-wrap"><div class="copy-block">Upon incapacity or death, the following will serve as successor Trustee, in the order named:</div><button class="copy-btn" onclick="copyBlock(this)">Copy</button></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="rule-card">
+    <div class="rule-head" onclick="toggleCard(this.parentElement)">
+      <span class="tag tag-check">Check</span>
+      <span class="rule-title-text">Paragraph 10 — specifically list successor trustees · Confirm key terms clear for third parties</span>
+      <svg class="rule-chevron" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+    </div>
+    <div class="rule-body"><p>Confirm the Certification summarizes key trust terms clearly and concisely for third-party institutions (banks, title companies). Specifically list successor trustees in paragraph 10.</p></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     SECTION: TRUST SUMMARY
+═══════════════════════════════════════════════════════ -->
+<div class="section" id="section-trustsum">
+  <div class="section-header">
+    <div class="section-title">Trust Summary</div>
+    <div class="section-subtitle">Always complete after the trust document is finalized — used at signing meetings and for ongoing staff reference</div>
+  </div>
+
+  <div class="rule-card">
+    <div class="rule-head" onclick="toggleCard(this.parentElement)">
+      <span class="tag tag-format">Format</span>
+      <span class="rule-title-text">Font · Section heading style</span>
+      <svg class="rule-chevron" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+    </div>
+    <div class="rule-body"><p>Georgia font. Section headings appear on a single line, followed by a dash (e.g., "Article 4 – Distribution of Property").</p></div>
+  </div>
+
+  <div class="group-label">Article: Trustee Succession</div>
+
+  <div class="rule-card">
+    <div class="rule-head" onclick="toggleCard(this.parentElement)">
+      <span class="tag tag-format">Format</span>
+      <span class="rule-title-text">Successor trustees in paragraph form · Combine if same trustees for incapacity and death</span>
+      <svg class="rule-chevron" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+    </div>
+    <div class="rule-body">
+      <p>Make list of successor trustees a paragraph — not bullet points. If Incapacity/Death Trustees are the same, combine in one paragraph. If the trust establishes separate trusts for descendants, include specific language about who serves as trustee for each separate trust. Examples:</p>
+      <div class="scenario-option" data-scenarios="married">
+        <p class="scenario-option-label">Married clients</p>
+        <div class="copy-wrap"><div class="copy-block">When you have both passed away, your children will be eligible to serve as Trustees of their respective Trusts immediately. Your grandchildren will be eligible to serve as Co-Trustee of their respective Trusts at the age of 25. Then when they reach the age of 30, they will be able to serve as sole Trustee of their respective Trusts.</div><button class="copy-btn" onclick="copyBlock(this)">Copy</button></div>
+      </div>
+      <div class="scenario-option" data-scenarios="single">
+        <p class="scenario-option-label">Single clients</p>
+        <div class="copy-wrap"><div class="copy-block">When you die, [BENE 1] and [BENE 2] will be eligible to serve as Co-Trustee of their respective trusts once they reach the age of [CO-TRUSTEE AGE]. Upon reaching the age of [SOLE TRUSTEE AGE], they will be eligible to serve as sole Trustee of their respective trusts.</div><button class="copy-btn" onclick="copyBlock(this)">Copy</button></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="group-label">Article: Descendants' Trust</div>
+
+  <div class="rule-card">
+    <div class="rule-head" onclick="toggleCard(this.parentElement)">
+      <span class="tag tag-replace">Replace</span>
+      <span class="rule-title-text">Single-child trust — replace standard language</span>
+      <svg class="rule-chevron" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+    </div>
+    <div class="rule-body">
+      <div class="copy-wrap"><div class="copy-block">Article [ARTICLE #] contains the provisions for administration of the remaining trust property upon your death. Specifically, the Trustee will hold and administer the remaining trust property for [CHILD NAME].
+
+Your Trustee may distribute the income and principal of [CHILD NAME]'s trust to him/her for his/her needs.
+
+If [CHILD NAME] should die before the complete distribution of his/her trust, he/she has a power of appointment to decide how any remaining property is to be distributed among one or more persons or entities and the creditors of his/her estate. If he/she does not exercise this power of appointment, any property remaining in his/her trust will be distributed in trusts to his/her descendants. If he/she has no descendants, the balance of the trust property will be distributed in separate trusts to the descendants of his/her nearest lineal ancestor who is your descendant, and if none, then in separate trusts to your descendants. If you have no descendants, the balance of the trust property will be distributed as provided in [ARTICLE # FOR REMOTE CONTINGENT BENEFICIARIES].</div><button class="copy-btn" onclick="copyBlock(this)">Copy</button></div>
+    </div>
+  </div>
+
+  <div class="group-label">Article: General Provisions</div>
+
+  <div class="rule-card">
+    <div class="rule-head" onclick="toggleCard(this.parentElement)">
+      <span class="tag tag-format">Format</span>
+      <span class="rule-title-text">Move "Incapacity" definition to second paragraph · Remove legal separation paragraph</span>
+      <svg class="rule-chevron" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+    </div>
+    <div class="rule-body"><p>Move the definition of "Incapacity" to the second paragraph of the General Provisions article to improve clarity. Remove any paragraph that addresses legal separation — it is unnecessary and can be confusing.</p></div>
+  </div>
+
+  <div class="group-label">Finalization</div>
+
+  <div class="rule-card">
+    <div class="rule-head" onclick="toggleCard(this.parentElement)">
+      <span class="tag tag-check">Check</span>
+      <span class="rule-title-text">Article reference integrity — critical after adding articles to the trust</span>
+      <svg class="rule-chevron" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+    </div>
+    <div class="rule-body"><p>All article and section references in the summary must correspond exactly to the article and section numbers in the trust. When you ADD articles to the Summary, update all subsequent article numbers. This is especially critical when a Retirement Plans article is added — all subsequent articles shift. Keep the Summary consistent with the final version of the trust — staff refer to it frequently.</p></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     SECTION: TRUSTEE AFFIDAVIT
+═══════════════════════════════════════════════════════ -->
+<div class="section" id="section-trustee-aff">
+  <div class="section-header">
+    <div class="section-title">Trustee Affidavit</div>
+    <div class="section-subtitle">Use when third parties will not accept the Certification of Trust alone</div>
+  </div>
+
+  <div class="rule-card">
+    <div class="rule-head" onclick="toggleCard(this.parentElement)">
+      <span class="tag tag-format">Format</span>
+      <span class="rule-title-text">Font · Margins · Remove underlines from names</span>
+      <svg class="rule-chevron" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+    </div>
+    <div class="rule-body"><p>Georgia font. Margins: 3 inches on first page, 1.5 inches on remaining pages. Remove underlines from names.</p></div>
+  </div>
+
+  <div class="rule-card">
+    <div class="rule-head" onclick="toggleCard(this.parentElement)">
+      <span class="tag tag-check">Check</span>
+      <span class="rule-title-text">Language matches Certification of Trust · Correct trust name and date throughout</span>
+      <svg class="rule-chevron" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+    </div>
+    <div class="rule-body"><p>Ensure the affidavit matches the Certification of Trust language regarding trustee succession and authority. Confirm the correct trust name and date are used throughout.</p></div>
+  </div>
+
+  <div class="rule-card">
+    <div class="rule-head" onclick="toggleCard(this.parentElement)">
+      <span class="tag tag-check">Check</span>
+      <span class="rule-title-text">Signature page has content — push paragraph 7 down if necessary</span>
+      <svg class="rule-chevron" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+    </div>
+    <div class="rule-body"><p>Make sure there is content on the signature page. Push paragraph 7 down to the signature page if necessary.</p></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     SECTION: DURABLE POA
+═══════════════════════════════════════════════════════ -->
+<div class="section" id="section-dpoa">
+  <div class="section-header">
+    <div class="section-title">Durable Power of Attorney</div>
+    <div class="section-subtitle">Location: Paralegal Reference → Estate Planning → Estate Planning Templates → General Durable Power of Attorney_Template</div>
+  </div>
+
+  <div class="rule-card">
+    <div class="rule-head" onclick="toggleCard(this.parentElement)">
+      <span class="tag tag-format">Format</span>
+      <span class="rule-title-text">Font · Margins</span>
+      <svg class="rule-chevron" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+    </div>
+    <div class="rule-body"><p>Georgia font. Margins: 3 inches on first page, 1.5 inches on remaining pages.</p></div>
+  </div>
+
+  <div class="rule-card">
+    <div class="rule-head" onclick="toggleCard(this.parentElement)">
+      <span class="tag tag-situational">Situational</span>
+      <span class="rule-title-text" data-scenarios="minor-children">Add guardian nomination — clients with minor children</span>
+      <svg class="rule-chevron" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+    </div>
+    <div class="rule-body">
+      <p>In Article titled "Administrative Powers and Provisions," add subsection:</p>
+      <div class="copy-wrap"><div class="copy-block">Nomination of Guardian for Minor Children
+
+If I am incapacitated and no longer able to adequately care for my children, I nominate the following persons, in the order named, as temporary guardians for my minor children: ________________________.
+
+If I regain the ability to adequately care for my children, I may terminate the guardianship by written notice to the guardian, and my children will return to my care.</div><button class="copy-btn" onclick="copyBlock(this)">Copy</button></div>
+    </div>
+  </div>
+
+  <div class="rule-card">
+    <div class="rule-head" onclick="toggleCard(this.parentElement)">
+      <span class="tag tag-situational">Situational</span>
+      <span class="rule-title-text" data-scenarios="pets">Add pet planning language — clients with pets</span>
+      <svg class="rule-chevron" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+    </div>
+    <div class="rule-body"><p>Add pet planning language regarding spending limits and designated caretakers. Reference sample language at: Paralegal Reference → Sample Language → Pet Planning Language.</p></div>
+  </div>
+
+  <div class="rule-card">
+    <div class="rule-head" onclick="toggleCard(this.parentElement)">
+      <span class="tag tag-add">Add</span>
+      <span class="rule-title-text">Also draft Acknowledgment by Agent</span>
+      <svg class="rule-chevron" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+    </div>
+    <div class="rule-body"><p>Always draft the Acknowledgment by Agent alongside the DPOA.<br>Location: Paralegal Reference → Estate Planning → Estate Planning Templates → Acknowledgment by Agent_Template. Georgia font.</p></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     SECTION: HEALTHCARE POA / HIPAA
+═══════════════════════════════════════════════════════ -->
+<div class="section" id="section-hcpoa">
+  <div class="section-header">
+    <div class="section-title">Healthcare POA / Living Will / HIPAA / Final Disposition</div>
+    <div class="section-subtitle">Location: Paralegal Reference → Estate Planning → Estate Planning Templates</div>
+  </div>
+
+  <div class="rule-card">
+    <div class="rule-head" onclick="toggleCard(this.parentElement)">
+      <span class="tag tag-format">Format</span>
+      <span class="rule-title-text">Healthcare POA — font · page numbers</span>
+      <svg class="rule-chevron" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+    </div>
+    <div class="rule-body"><p>Georgia font. Double-check that page numbers are correct and update as needed.</p></div>
+  </div>
+
+  <div class="rule-card">
+    <div class="rule-head" onclick="toggleCard(this.parentElement)">
+      <span class="tag tag-check">Check</span>
+      <span class="rule-title-text">Include agent relationship if known</span>
+      <svg class="rule-chevron" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+    </div>
+    <div class="rule-body"><p>Include the agent's relationship to the principal if known (e.g., daughter, spouse, brother).</p></div>
+  </div>
+
+  <div class="rule-card">
+    <div class="rule-head" onclick="toggleCard(this.parentElement)">
+      <span class="tag tag-format">Format</span>
+      <span class="rule-title-text">HIPAA Authorization · Final Disposition — Georgia font</span>
+      <svg class="rule-chevron" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+    </div>
+    <div class="rule-body"><p>Both documents: Georgia font. Templates located in Estate Planning Templates folder.</p></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     SECTION: ANCILLARY DOCUMENTS
+═══════════════════════════════════════════════════════ -->
+<div class="section" id="section-ancillary">
+  <div class="section-header">
+    <div class="section-title">Ancillary Documents</div>
+    <div class="section-subtitle">Supporting documents included in each estate plan package</div>
+  </div>
+
+  <div class="group-label">Trust Information / Quick Reference Page</div>
+
+  <div class="rule-card">
+    <div class="rule-head" onclick="toggleCard(this.parentElement)">
+      <span class="tag tag-format">Format</span>
+      <span class="rule-title-text">Font · Margins · Spacing</span>
+      <svg class="rule-chevron" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+    </div>
+    <div class="rule-body"><p>Georgia font. Change margins to <strong>0.5 top and bottom, 1.25 left and right</strong>. Double-check all line and paragraph spacing for readability and consistency.</p></div>
+  </div>
+
+  <div class="rule-card">
+    <div class="rule-head" onclick="toggleCard(this.parentElement)">
+      <span class="tag tag-check">Check</span>
+      <span class="rule-title-text">All fields populated — settlor names, trust name, trust date</span>
+      <svg class="rule-chevron" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+    </div>
+    <div class="rule-body"><p>Confirm full names of Settlors, trust name, and trust date are all populated. Used internally to support quick fact-checking during client communication or drafting reviews.</p></div>
+  </div>
+
+  <div class="group-label">Assignment of Personal Property</div>
+
+  <div class="rule-card">
+    <div class="rule-head" onclick="toggleCard(this.parentElement)">
+      <span class="tag tag-format">Format</span>
+      <span class="rule-title-text">Font · Date line on signature page</span>
+      <svg class="rule-chevron" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+    </div>
+    <div class="rule-body"><p>Georgia font (including footer). Correct signature line by deleting spaces from the date line. Location: Paralegal Reference → Estate Planning → Estate Planning Templates → Assignment of Personal Property.</p></div>
+  </div>
+
+  <div class="group-label">Name and Fiduciary Summary (Confirmation of Names and Fiduciaries)</div>
+
+  <div class="rule-card">
+    <div class="rule-head" onclick="toggleCard(this.parentElement)">
+      <span class="tag tag-format">Format</span>
+      <span class="rule-title-text">Title format · Font</span>
+      <svg class="rule-chevron" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+    </div>
+    <div class="rule-body"><p>Georgia font (including footer). Change title to client's name — remove Trust name. Example: "Confirmation of Names and Fiduciaries for John and Jane Doe."</p></div>
+  </div>
+
+  <div class="rule-card">
+    <div class="rule-head" onclick="toggleCard(this.parentElement)">
+      <span class="tag tag-check">Check</span>
+      <span class="rule-title-text">Confirm inclusion of all agents — DPOA, HCPOA, HIPAA</span>
+      <svg class="rule-chevron" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+    </div>
+    <div class="rule-body">
+      <ul>
+        <li>Durable Power of Attorney agents</li>
+        <li>Health Care Power of Attorney agents</li>
+        <li>HIPAA-authorized individuals</li>
+      </ul>
+      <p style="margin-top:8px">Tailor to each client — reuse template from prior client but update all names, roles, and agent designations. Included in the estate plan binder as a single-page fiduciary summary.</p>
+    </div>
+  </div>
+
+  <div class="group-label">Trust Funding Instructions</div>
+
+  <div class="rule-card">
+    <div class="rule-head" onclick="toggleCard(this.parentElement)">
+      <span class="tag tag-format">Format</span>
+      <span class="rule-title-text">Font · Signature line on last page</span>
+      <svg class="rule-chevron" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+    </div>
+    <div class="rule-body"><p>Georgia font. Fix signature line on last page by deleting some of the line to fit on one line.</p></div>
+  </div>
+
+  <div class="rule-card">
+    <div class="rule-head" onclick="toggleCard(this.parentElement)">
+      <span class="tag tag-replace">Replace</span>
+      <span class="rule-title-text">"Using Your Certification of Trust" — change bullets to paragraph</span>
+      <svg class="rule-chevron" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+    </div>
+    <div class="rule-body">
+      <div class="copy-wrap"><div class="copy-block">Your Revocable Trust Portfolio contains a Certification of Trust. In your certification, you state in writing that: (i) your trust exists; (ii) you are one of the Trustees; and (iii) you have the authority and power to transact business as a Trustee.</div><button class="copy-btn" onclick="copyBlock(this)">Copy</button></div>
+    </div>
+  </div>
+
+  <div class="rule-card">
+    <div class="rule-head" onclick="toggleCard(this.parentElement)">
+      <span class="tag tag-replace">Replace</span>
+      <span class="rule-title-text">Client Acknowledgement paragraph</span>
+      <svg class="rule-chevron" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+    </div>
+    <div class="rule-body">
+      <div class="copy-wrap"><div class="copy-block">[I/We] acknowledge that counsel has advised me about the importance of funding my Revocable Living Trust, and I understand that after the initial funding has been completed by Ibis Legacy Law, LLC, it is my responsibility to fund any future assets to my Revocable Living Trust. Therefore, I understand that neither my attorneys, Rebecca Yingst Price and Eric Meleney, nor Ibis Legacy Law, LLC is responsible for any future funding of my Revocable Living Trust. In addition, I acknowledge that I have reviewed the funding instructions and I understand the instructions have been provided to assist me with the funding of my Revocable Living Trust.</div><button class="copy-btn" onclick="copyBlock(this)">Copy</button></div>
+    </div>
+  </div>
+
+  <div class="rule-card">
+    <div class="rule-head" onclick="toggleCard(this.parentElement)">
+      <span class="tag tag-check">Check</span>
+      <span class="rule-title-text">Retirement plan beneficiary designations — align with estate plan recommendations</span>
+      <svg class="rule-chevron" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+    </div>
+    <div class="rule-body">
+      <ul>
+        <li><strong>Single individuals:</strong> List trust as primary beneficiary (see Tim Hummer for example)</li>
+        <li><strong>Married couples:</strong> List spouse as primary, trust as secondary (see Vasse-Hansell for sample)</li>
+        <li>If trust is not listed as a beneficiary, remove any instructions suggesting otherwise</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="rule-card">
+    <div class="rule-head" onclick="toggleCard(this.parentElement)">
+      <span class="tag tag-check">Check</span>
+      <span class="rule-title-text">Life insurance · Spousal/child references · Personalization</span>
+      <svg class="rule-chevron" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+    </div>
+    <div class="rule-body">
+      <ul>
+        <li>Minor children: life insurance may fund a trust to provide structured support</li>
+        <li>Adult children: consider outright designations or continuing trust structures; list spouse then children</li>
+        <li>Review carefully for any references to spouses or children; remove or reword for single or childless clients</li>
+        <li>If only one child, specifically name them or say "your child"</li>
+        <li>Personalize — clients should not feel this is a cookie-cutter document</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     SECTION: WARRANTY DEED
+═══════════════════════════════════════════════════════ -->
+<div class="section" id="section-deed">
+  <div class="section-header">
+    <div class="section-title">Warranty Deed</div>
+    <div class="section-subtitle">Location: Paralegal Reference → Estate Planning → Estate Planning Templates → Deed to Trust_Template</div>
+  </div>
+
+  <div class="rule-card">
+    <div class="rule-head" onclick="toggleCard(this.parentElement)">
+      <span class="tag tag-format">Format</span>
+      <span class="rule-title-text">Font · Margins · Property description indentation</span>
+      <svg class="rule-chevron" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+    </div>
+    <div class="rule-body"><p>Georgia font. Margins: 3 inches on first page, 1.5 inches on remaining pages. Property description and PPN indented 0.5 inches on left and right.</p></div>
+  </div>
+
+  <div class="rule-card">
+    <div class="rule-head" onclick="toggleCard(this.parentElement)">
+      <span class="tag tag-check">Check</span>
+      <span class="rule-title-text">Names · Marital status · LLC state of registration · Trust grantee clause</span>
+      <svg class="rule-chevron" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+    </div>
+    <div class="rule-body">
+      <ul>
+        <li>Double-check that names match exactly as listed on the original deed</li>
+        <li>Include marital status — critical if grantors may be married to others (e.g., siblings with the same last name) due to dower rights</li>
+        <li>For transfers to LLCs: specify the state in which the LLC is registered in the Grantee clause</li>
+        <li>For transfers to a trust: the "AND THE SAID" paragraph should include "…said Grantee, its heirs, assigns and successors…"</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="group-label">DTE100EX — Statement of Reason for Exemption from Real Property Conveyance Fee</div>
+
+  <div class="rule-card">
+    <div class="rule-head" onclick="toggleCard(this.parentElement)">
+      <span class="tag tag-note">Note</span>
+      <span class="rule-title-text">Exemption codes by transfer type</span>
+      <svg class="rule-chevron" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+    </div>
+    <div class="rule-body">
+      <ul>
+        <li><strong>Individual to RLT:</strong> Select "T" (Transfer to Trust) — Explanation: "The Grantor is transferring the property to a Revocable Living Trust for the benefit of the Grantor whereby the Grantor has the unlimited right to revoke the Trust (choice T)"</li>
+        <li><strong>To MAPT (client has children):</strong> Select "D" (gift) — Explanation: "The Grantor is transferring the property to a trust for the benefit of their children. The Grantor has retained an unlimited right of occupancy in the property."</li>
+        <li><strong>To MAPT (no children):</strong> Select "M" (no money transferred)</li>
+        <li><strong>Trust to trust (same remainder beneficiaries):</strong> Select "D" or "X"</li>
+      </ul>
+      <p style="margin-top:8px">Include email address. Use DTE100EX Template or search "DTE100EX [County Name]" for the most current county version.</p>
+    </div>
+  </div>
+
+  <div class="group-label">DTE101 — Homestead Exemption</div>
+
+  <div class="rule-card">
+    <div class="rule-head" onclick="toggleCard(this.parentElement)">
+      <span class="tag tag-check">Check</span>
+      <span class="rule-title-text">How to verify homestead exemption exists</span>
+      <svg class="rule-chevron" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+    </div>
+    <div class="rule-body">
+      <p>On the county auditor/fiscal office website, click "Property Search" and look up by owner or address. Go to Tax Summary or Taxes by Year tab. Look under the Homestead Exemption column:</p>
+      <ul>
+        <li>$0 or "no" → no homestead exemption</li>
+        <li>Dollar amount listed → homestead exemption exists</li>
+      </ul>
+      <p style="margin-top:8px"><strong>Critical:</strong> If reviewing 1st half taxes only, multiply the homestead amount by 2 for the full-year figure needed on the DTE101.</p>
+    </div>
+  </div>
+
+  <div class="rule-card">
+    <div class="rule-head" onclick="toggleCard(this.parentElement)">
+      <span class="tag tag-note">Note</span>
+      <span class="rule-title-text">Completing the DTE101 · Cuyahoga County — also include Exemption Verification Questionnaire</span>
+      <svg class="rule-chevron" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+    </div>
+    <div class="rule-body">
+      <ul>
+        <li>Fill in Grantor/Grantee/Property information</li>
+        <li>In the first text box, enter the homestead dollar amount on both "Preceding Tax Year" and "Current Tax Year" lines</li>
+        <li>Do NOT fill in the mobile home text box — leave blank</li>
+        <li>Grantor or attorney signs and dates; requires notarization</li>
+        <li><strong>Cuyahoga County only:</strong> also include the Exemption Verification Questionnaire</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     SECTION: PORTFOLIO INSERTS
+═══════════════════════════════════════════════════════ -->
+<div class="section" id="section-portfolio">
+  <div class="section-header">
+    <div class="section-title">Portfolio Inserts</div>
+    <div class="section-subtitle">Location: Paralegal Reference → Estate Planning → Estate Planning Templates → Portfolio Inserts_Template</div>
+  </div>
+
+  <div class="rule-card">
+    <div class="rule-head" onclick="toggleCard(this.parentElement)">
+      <span class="tag tag-format">Format</span>
+      <span class="rule-title-text" data-scenarios="married">Font · Joint insert for married couples with individual trusts</span>
+      <svg class="rule-chevron" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+    </div>
+    <div class="rule-body"><p>Georgia font. If married couple with individual trusts, draft a joint Portfolio Insert.</p></div>
+  </div>
+
+  <div class="rule-card">
+    <div class="rule-head" onclick="toggleCard(this.parentElement)">
+      <span class="tag tag-remove">Remove</span>
+      <span class="rule-title-text">Remove "Property Agreements" · Remove disclaimer examples from Introduction</span>
+      <svg class="rule-chevron" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+    </div>
+    <div class="rule-body">
+      <ul>
+        <li>Remove "Property Agreements" from Table of Contents and from the section with the same title — Ohio is not a community property state and this is irrelevant.</li>
+        <li>Remove the two paragraphs of disclaimer examples from the Introduction section (pg. 4).</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="rule-card">
+    <div class="rule-head" onclick="toggleCard(this.parentElement)">
+      <span class="tag tag-note">Note</span>
+      <span class="rule-title-text">Last Will section — two options based on how the original is stored</span>
+      <svg class="rule-chevron" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+    </div>
+    <div class="rule-body">
+      <p><strong>Option A — Filed originals:</strong></p>
+      <div class="copy-wrap"><div class="copy-block">This section contains a copy of your Last Will and Testament with COPY stamped on it. Since you have only one original Last Will and Testament, your original Last Will and Testament has been deposited in the vault at the [COUNTY] County Probate Court for safekeeping.</div><button class="copy-btn" onclick="copyBlock(this)">Copy</button></div>
+      <p style="margin-top:10px"><strong>Option B — Client retains original:</strong></p>
+      <div class="copy-wrap"><div class="copy-block">This section contains an unsigned copy of your Last Will and Testament with COPY stamped on it. Since you have only one original Last Will and Testament, you should store the original Last Will and Testament in a very safe place such as a safe, vault, or safe-deposit box. If you choose to keep the original Last Will and Testament in a safe-deposit box, make sure you have designated a trusted person as "deputy" or as co-owner of the box.</div><button class="copy-btn" onclick="copyBlock(this)">Copy</button></div>
+    </div>
+  </div>
+
+  <div class="rule-card">
+    <div class="rule-head" onclick="toggleCard(this.parentElement)">
+      <span class="tag tag-check">Check</span>
+      <span class="rule-title-text">Power of Attorney language · Funeral Arrangements header · No blank pages</span>
+      <svg class="rule-chevron" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+    </div>
+    <div class="rule-body">
+      <ul>
+        <li>Section titled Power of Attorney: change "conservator" to "guardian"</li>
+        <li>Capitalize header: FUNERAL ARRANGEMENTS FOR [CLIENT]</li>
+        <li data-scenarios="married">If creating joint Portfolio Insert: add Funeral Arrangements for the second spouse</li>
+        <li>Confirm there are no blank pages</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     SECTION: MAPT
+═══════════════════════════════════════════════════════ -->
+<div class="section" id="section-mapt">
+  <div class="section-header">
+    <div class="section-title">Medicaid Asset Protection Trust (MAPT)</div>
+    <div class="section-subtitle">Reference: Dallas, Tim (married joint trust) · Clapacs, Kathleen (single individual trust)</div>
+  </div>
+
+  <div class="group-label">Article: Trustee Succession and Trust Protector Provisions</div>
+
+  <div class="rule-card">
+    <div class="rule-head" onclick="toggleCard(this.parentElement)">
+      <span class="tag tag-add">Add</span>
+      <span class="rule-title-text" data-scenarios="medicaid">Add "Power to Remove Lifetime Beneficiaries" to Trust Protector provisions</span>
+      <svg class="rule-chevron" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+    </div>
+    <div class="rule-body">
+      <div class="copy-wrap"><div class="copy-block">Power to Remove Lifetime Beneficiaries
+
+The Trust Protector may remove any Lifetime Beneficiary. In addition, the Trust Protector may add any individual—but not any non-individual—as a Lifetime Beneficiary so long as the following individuals are not added: me, a creditor of mine, or anyone related or subordinate to the Trust Protector within the meaning of Section 672(c) of the Internal Revenue Code.</div><button class="copy-btn" onclick="copyBlock(this)">Copy</button></div>
+    </div>
+  </div>
+
+  <div class="group-label">Article: Administration While Either of Us is Living</div>
+
+  <div class="rule-card">
+    <div class="rule-head" onclick="toggleCard(this.parentElement)">
+      <span class="tag tag-check">Check</span>
+      <span class="rule-title-text">Power of appointment — must be LIMITED, not general</span>
+      <svg class="rule-chevron" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+    </div>
+    <div class="rule-body"><p>In sections titled "Intent as to Estate Inclusion" and "Administration Upon Our Deaths," confirm the grantors retained a <strong>limited</strong> testamentary power of appointment — NOT a general power of appointment.</p></div>
+  </div>
+
+  <div class="group-label">Article: Trust Administration</div>
+
+  <div class="rule-card">
+    <div class="rule-head" onclick="toggleCard(this.parentElement)">
+      <span class="tag tag-add">Add</span>
+      <span class="rule-title-text">Add "Beneficiaries of Retirement-Account Proceeds" section — if retirement assets flow to trust</span>
+      <svg class="rule-chevron" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+    </div>
+    <div class="rule-body"><p>Add the "Beneficiaries of Retirement-Account Proceeds" section if retirement assets will flow to the trust after the grantor's death.</p></div>
+  </div>
+
+  <div class="rule-card">
+    <div class="rule-head" onclick="toggleCard(this.parentElement)">
+      <span class="tag tag-remove">Remove</span>
+      <span class="rule-title-text">Delete "Information to Beneficiaries" section</span>
+      <svg class="rule-chevron" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+    </div>
+    <div class="rule-body"><p>Delete the section titled "Information to Beneficiaries."</p></div>
+  </div>
+
+  <div class="rule-card">
+    <div class="rule-head" onclick="toggleCard(this.parentElement)">
+      <span class="tag tag-replace">Replace</span>
+      <span class="rule-title-text">Grantor Trust Provisions — replace Trustee with Trust Protector in subsections (a) and (b)</span>
+      <svg class="rule-chevron" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+    </div>
+    <div class="rule-body"><p>In "Grantor Trust Provisions," change sub-sections (a) and (b) to replace "Trustee" with "Trust Protector."</p></div>
+  </div>
+
+  <div class="group-label">Article: Our Trustee's Powers</div>
+
+  <div class="rule-card">
+    <div class="rule-head" onclick="toggleCard(this.parentElement)">
+      <span class="tag tag-remove">Remove</span>
+      <span class="rule-title-text">Delete "Power to Appoint in Further Trust" (trust decanting)</span>
+      <svg class="rule-chevron" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+    </div>
+    <div class="rule-body"><p>Delete the "Power to Appoint in Further Trust" / trust decanting section.</p></div>
+  </div>
+
+  <div class="rule-card">
+    <div class="rule-head" onclick="toggleCard(this.parentElement)">
+      <span class="tag tag-add">Add</span>
+      <span class="rule-title-text">Add "Insurance Powers" section</span>
+      <svg class="rule-chevron" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+    </div>
+    <div class="rule-body">
+      <div class="copy-wrap"><div class="copy-block">Insurance Powers
+
+Our Trustee may purchase, accept, hold, and deal with as owner, policies of insurance on either of our lives, the life of any beneficiary, or on the life of any person in whom any beneficiary has an insurable interest. It is our intent that life insurance policies be considered proper investments of trust principal. Our Trustee may designate any beneficiary (other than either of us) of any such policy of insurance.
+
+Our Trustee may purchase disability, medical, liability, long-term health care, and other insurance on behalf of and for the benefit of any beneficiary (other than either of us). Our Trustee may purchase annuities and similar investments on the life of any beneficiary. Our Trustee may designate any beneficiary (other than either of us) of any such annuity or similar investment.
+
+The provisions of this Section supersede the principles of general trust law with respect to our Trustee's duties and obligations relating to any life insurance policies owned or acquired by our trust.</div><button class="copy-btn" onclick="copyBlock(this)">Copy</button></div>
+    </div>
+  </div>
+
+  <div class="group-label">Other MAPT Edits</div>
+
+  <div class="rule-card">
+    <div class="rule-head" onclick="toggleCard(this.parentElement)">
+      <span class="tag tag-remove">Remove</span>
+      <span class="rule-title-text">Assignment of Personal Property — remove boats and automobiles</span>
+      <svg class="rule-chevron" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+    </div>
+    <div class="rule-body"><p>For MAPT assignments, remove boats and automobiles from the Assignment of Personal Property.</p></div>
+  </div>
+
+  <div class="rule-card">
+    <div class="rule-head" onclick="toggleCard(this.parentElement)">
+      <span class="tag tag-check">Check</span>
+      <span class="rule-title-text">Certification of Trust — specifically list successor trustees in paragraph 10</span>
+      <svg class="rule-chevron" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+    </div>
+    <div class="rule-body"><p>In the MAPT Certification of Trust, specifically list successor trustees in paragraph 10.</p></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     SECTION: PET PLANNING
+═══════════════════════════════════════════════════════ -->
+<div class="section" id="section-pet">
+  <div class="section-header">
+    <div class="section-title">Pet Planning</div>
+    <div class="section-subtitle">Two options: outright gift to individual caregiver, or full pet trust</div>
+  </div>
+
+  <div class="group-label">Option A: Gift to Individual Caregiver (No Pet Trust)</div>
+
+  <div class="rule-card">
+    <div class="rule-head" onclick="toggleCard(this.parentElement)">
+      <span class="tag tag-note">Note</span>
+      <span class="rule-title-text">Add two sections to Specific Distributions Article — animal + care funds</span>
+      <svg class="rule-chevron" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+    </div>
+    <div class="rule-body">
+      <div class="copy-wrap"><div class="copy-block">Article __.01:
+
+Upon the death of the second of us, our Trustee will distribute [Pet Name] – [description of pet] to [Beneficiary Name], outright, free of trust with the intent that [Beneficiary's first Name] provides and cares for [Pet Name] for the rest of his/her natural life. If [Beneficiary Name] is not then living, our Trustee will distribute the property subject to this distribution to [NAME OF ALTERNATE]. Should [Pet's Name], [Pet's Description], predecease us, this gift shall lapse.
+
+Article __.02:
+
+Upon the death of the second of us, our Trustee will distribute the sum of [dollar amount] to [Beneficiary Name], outright, free of trust for the purposes of caring for [Name of Pet], [description of pet], to be used for the pet's needs, such as but not limited to, food, medical care, pet insurance and toys. If [Name of Beneficiary] is not then living, our Trustee will distribute the property subject to [Name of person who will care for pet if the first beneficiary is deceased] for the purposes of caring for [Pet's Name]. Should [Pet's Name], [Pet's Description], predecease us, this gift shall lapse.</div><button class="copy-btn" onclick="copyBlock(this)">Copy</button></div>
+    </div>
+  </div>
+
+  <div class="group-label">Option B: Full Pet Trust</div>
+
+  <div class="rule-card">
+    <div class="rule-head" onclick="toggleCard(this.parentElement)">
+      <span class="tag tag-add">Add</span>
+      <span class="rule-title-text">Pet Trust — Section __.01 Residuary Specific Distributions · Section __.02 [Client Name] Pet Trust · Section __.03 Residuary Distribution</span>
+      <svg class="rule-chevron" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+    </div>
+    <div class="rule-body">
+      <div class="copy-wrap"><div class="copy-block">Section __.01	Residuary Specific Distributions
+
+After the death of the survivor of us, the Trustee shall make the specific distributions identified in this Article and in Article [ARTICLE #] from our remaining trust property not distributed under prior Articles of this trust.
+
+Section __.02	[CLIENT NAME] Pet Trust
+
+After the death of the survivor of us, the Trustee shall allocate from the remaining trust property $[DOLLAR AMOUNT] to be held in a separate trust (Pet Trust) for the benefit of all of our animals living at the time of the death of the survivor of us (Pet Beneficiaries) to be administered as provided in this section.
+
+We direct the Trustee to deliver the Pet Beneficiaries to the Caregiver after the death of the survivor of us.
+
+If we have no animals living at the time of the death of the survivor of us, then the distributions provided for under this Section will lapse, and this property instead will be distributed under the remaining provisions of this trust. Property passing under this Section passes free of any administrative expenses or death taxes.
+
+The Trustee shall administer the amount set aside for the Pet Beneficiaries as follows:
+
+Intent
+It is our intent that the funds allocated to this trust be used to ensure the continued care, comfort, and well-being of our pets following our death. We recognize that the amount allocated may be modest, but the purpose is important, and we direct that this trust remain in effect and be administered according to our wishes notwithstanding any statute permitting termination or modification of a small or uneconomic trust. We direct that administration be practical and cost-effective, with minimal formalities or reporting. Our primary concern is the humane and loving care of our animals, and we encourage our Trustee and the designated Caregiver to exercise sound judgment and flexibility to fulfill this purpose without unnecessary expense or legal complexity.
+
+Trustee and Successor Trustee
+We nominate [INITIAL TRUSTEE] to serve as the Trustee of this Pet Trust. If [INITIAL TRUSTEE] is unable or unwilling to serve, we nominate [SUCCESSOR TRUSTEE] to serve as Successor Trustee of this Pet Trust. If [SUCCESSOR TRUSTEE] is unable or unwilling to serve, we nominate a licensed veterinarian employed by [PET'S PRIMARY VETERINARY HOSPITAL/VETERINARIAN], to serve as Successor Trustee of this Pet Trust.
+
+Caregiver and Successor Caregiver
+We nominate [INITIAL CAREGIVER] to serve as the Caregiver of the Pet Beneficiaries. If [INITIAL CAREGIVER] is unable or unwilling to serve, we nominate [BACKUP CAREGIVER]. If [BACKUP CAREGIVER] is unable or unwilling to serve, we nominate a licensed veterinarian employed by [PET'S PRIMARY VETERINARY HOSPITAL/VETERINARIAN]. If all of the individuals named above are unable or unwilling to serve, the Trustee shall appoint another suitable individual to act as Caregiver.
+
+The Caregiver shall have full custody of the Pet Beneficiaries and shall be responsible for their daily care and well-being. If, at the time of the Grantor's death, the Grantor is survived by both dogs and cats, the Caregiver may, in their discretion, determine whether they are able to care for all animals. If the Caregiver is only able or willing to care for one type of animal (e.g., only dogs or only cats), they shall make reasonable efforts to place the remaining animals in a safe and loving home, subject to the Trustee's approval.
+
+If the Grantor is survived by more than one cat, it is our wish that the cats remain together in the same household for the remainder of their lives, unless the Trustee determines that such an arrangement would not be in the animals' best interest.
+
+Distributions of Income and Principal
+The Trustee shall distribute for the benefit of the Pet Beneficiaries as much of the income and principal of the trust as the Trustee determines necessary or advisable for the Pet Beneficiaries' care. Specifically:
+
+The Trustee may distribute all or any portion of the income and principal of the Pet Trust to the Caregiver, or directly apply such Pet Trust property, for the care of any one or more of the Pet Beneficiaries, in such amounts and at such times as the Trustee, in the Trustee's discretion, may determine. Such care shall take into account the Pet Beneficiaries' living standard at the time of the death of the survivor of us, and includes but is not limited to costs for food, veterinary care, medication, grooming, routine expenses, pet sitting, and the disposition of the Pet Beneficiaries' remains.
+
+The Trustee, in the Trustee's discretion, may pay a reasonable stipend from the trust to the Caregiver.
+
+The Trustee shall add any undistributed net income to principal.
+
+Guidelines for Discretionary Distributions
+In making discretionary distributions for the benefit of the Pet Beneficiaries, we desire to provide for the Pet Beneficiaries' well-being and happiness. We request that the Trustee be liberal in making any distributions for the Pet Beneficiaries' benefit; even if the result is that nothing will pass to any remainder beneficiary. We acknowledge that the principal of the trust may be exhausted in making these distributions.
+
+Distribution upon the Death of Our Pet Beneficiaries
+If the last surviving Pet Beneficiary for which this trust was established dies after the establishment of this Pet Trust but before the complete distribution of this Pet Trust, the Trustee shall distribute the remaining Pet Trust property to [FIRST REMOTE CONTINGENT BENEFICIARY]. If such Fund is not in existence at the time of termination, the Trustee shall distribute the remainder, if any, to [SECOND REMOTE CONTINGENT BENEFICIARY].
+
+Waiver of Duties to Generate Income and Diversify Investments
+The Trustee of the Pet Trust shall not be required to invest trust assets for the purpose of generating income or growth, nor shall the Trustee be required to diversify the assets held in the Pet Trust. The Trustee is expressly authorized, in the Trustee's sole and absolute discretion, to hold trust funds in non-interest-bearing accounts, low-interest-bearing accounts, cash, or cash equivalents, or to maintain all or a substantial portion of the trust assets in a single investment or asset class, if the Trustee determines that doing so is practical, cost-effective, or otherwise consistent with the primary purpose of this Pet Trust.
+
+Waiver of Duty to Provide Accountings
+The Trustee of the Pet Trust shall be expressly relieved of any obligation to prepare or submit formal periodic accountings, financial statements, or reports of trust property, liabilities, receipts, and disbursements to any person or entity. This waiver is intended to minimize administrative burdens and expenses, thereby maximizing the resources available for the direct care and welfare of the Pet Beneficiaries.
+
+Perpetuities Provision
+This Pet Trust shall terminate upon the earlier of the death of the last surviving Pet Beneficiary or the period of years that a trust for the benefit of animals may validly exist under the laws of Ohio.
+
+Section __.03	Residuary Distribution
+
+The Trustee shall distribute all remaining trust property not distributed under this or prior Articles of this trust as provided in the Articles that follow.</div><button class="copy-btn" onclick="copyBlock(this)">Copy</button></div>
+    </div>
+  </div>
+
+  <div class="group-label">Farm and Equine Planning</div>
+
+  <div class="rule-card">
+    <div class="rule-head" onclick="toggleCard(this.parentElement)">
+      <span class="tag tag-note">Note</span>
+      <span class="rule-title-text">Farms and horses — use the full Care of Animals and Farm trust structure</span>
+      <svg class="rule-chevron" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+    </div>
+    <div class="rule-body"><p>For clients with farms and horses, use the full "Care of Animals and Farm" trust structure. Key components include: Caretaker appointment, specific Trustee obligations for the farm (taxes, mortgage, utilities, maintenance, insurance), specific Trustee obligations for the animals (feeding, vet care, farrier, grooming, end-of-life decisions), use and enjoyment rights for descendants, prohibition on rental without unanimous consent, and termination upon death of last animal. See source guide for complete language.</p></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     SECTION: QC & FINAL TOUCHES
+═══════════════════════════════════════════════════════ -->
+<div class="section archive-section" id="section-qc">
+  <div class="section-header">
+    <div class="section-title">QC &amp; Final Touches</div>
+    <div class="section-subtitle">Pre-signing checklist — complete these steps on every document before it leaves the office</div>
+  </div>
+
+  <div class="step-card"><div class="step-num">1</div><div class="step-body"><strong>Update all fields in WealthCounsel Ribbon</strong> before finalizing any document.</div></div>
+  <div class="step-card"><div class="step-num">2</div><div class="step-body"><strong>Run Ctrl+F</strong> for unresolved error codes: "Error! Bookmark not defined" and "UNANSWERED." Correct all instances before the document leaves drafting.</div></div>
+  <div class="step-card"><div class="step-num">3</div><div class="step-body"><strong>Update Table of Contents</strong> in the trust — only after all drafting and editing is complete.</div></div>
+  <div class="step-card"><div class="step-num">4</div><div class="step-body"><strong>Verify all article/section cross-references</strong> in the Trust Summary match the final trust document exactly. Update all subsequent article numbers any time a new article is added.</div></div>
+  <div class="step-card"><div class="step-num">5</div><div class="step-body"><strong>Complete the Trust Summary</strong> after the trust document is finalized. Use it at signing meetings and during client communication.</div></div>
+  <div class="step-card"><div class="step-num">6</div><div class="step-body"><strong>Add witness attestation</strong> after the notary block in the trust (see below).</div></div>
+
+  <div class="rule-card" style="margin-top:4px">
+    <div class="rule-head" onclick="toggleCard(this.parentElement)">
+      <span class="tag tag-add">Add</span>
+      <span class="rule-title-text">Witness attestation — after notary block in the trust</span>
+      <svg class="rule-chevron" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+    </div>
+    <div class="rule-body">
+      <div class="copy-wrap"><div class="copy-block">We, _______________________ and _______________________, state that the Grantor declared the instrument to be the Grantor's trust and signed it in our presence. We each signed the instrument as a witness in the presence of the Grantor and of each other.
+
+
+_________
+Witness
+20133 Farnsleigh Road
+Shaker Heights, Ohio 44122
+
+
+___________________________
+Witness
+20133 Farnsleigh Road
+Shaker Heights, Ohio 44122</div><button class="copy-btn" onclick="copyBlock(this)">Copy</button></div>
+    </div>
+  </div>
+
+  <div class="group-label">Troubleshooting</div>
+
+  <div class="rule-card">
+    <div class="rule-head" onclick="toggleCard(this.parentElement)">
+      <span class="tag tag-note">Note</span>
+      <span class="rule-title-text">Section references read "Section One.1" — fix via WealthCounsel Ribbon</span>
+      <svg class="rule-chevron" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+    </div>
+    <div class="rule-body"><p>Go to WealthCounsel Ribbon → Style Sheets → "Format with Arial/Times Roman double indent."</p></div>
+  </div>
+
+  <div class="rule-card">
+    <div class="rule-head" onclick="toggleCard(this.parentElement)">
+      <span class="tag tag-note">Note</span>
+      <span class="rule-title-text">Full-length trust in WealthCounsel — when the Simplified Version omits needed language</span>
+      <svg class="rule-chevron" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+    </div>
+    <div class="rule-body"><p>When the Simplified Version of the WealthCounsel Trust omits important language needed for complex or personalized scenarios, locate provisions from either: (1) the Full-Length Trust in WealthCounsel, or (2) a prior trust drafted for a client with a similar fact pattern.<br><br>To access the Full-Length Trust: return to the beginning of the interview, select "Yes" when prompted to "Change the Trust Length," then choose "Full" and answer all applicable interview questions.</p></div>
+  </div>
+</div>
+
+</main>
+</div>
+
+<script>
+// ═══════════════════════════════════════
+// NAVIGATION
+// ═══════════════════════════════════════
+const filterBar = document.getElementById('filter-bar');
+const progressWrap = document.getElementById('progress-wrap');
+
+function nav(el) {
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  el.classList.add('active');
+  const key = el.dataset.section;
+  const sec = document.getElementById('section-' + key);
+  if (sec) sec.classList.add('active');
+  document.getElementById('search-panel').classList.remove('active');
+  document.getElementById('search').value = '';
+
+  // Show filter bar and progress only for document sections (not workflow)
+  const showTools = key !== 'workflow';
+  filterBar.style.display = showTools ? 'flex' : 'none';
+  updateProgress();
+  applyFilters();
+}
+
+// ═══════════════════════════════════════
+// CARD TOGGLE
+// ═══════════════════════════════════════
+function toggleCard(card) {
+  card.classList.toggle('open');
+}
+
+// ═══════════════════════════════════════
+// COPY BUTTON
+// ═══════════════════════════════════════
+function copyBlock(btn) {
+  const block = btn.previousElementSibling;
+  navigator.clipboard.writeText(block.innerText).then(() => {
+    btn.textContent = 'Copied!';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2000);
+  });
+}
+
+// ═══════════════════════════════════════
+// CHECKBOXES — inject into every rule card
+// ═══════════════════════════════════════
+function getSectionKey() {
+  const active = document.querySelector('.section.active');
+  return active ? active.id.replace('section-', '') : 'unknown';
+}
+
+function getCheckboxKey(checkbox) {
+  const card = checkbox.closest('.rule-card');
+  const sec = card.closest('.section');
+  const secId = sec ? sec.id : 'x';
+  const title = card.querySelector('.rule-title-text');
+  return 'chk_' + secId + '_' + (title ? title.textContent.trim().slice(0, 40) : Math.random());
+}
+
+function injectCheckboxes() {
+  document.querySelectorAll('.section:not(.archive-section) .rule-card').forEach(card => {
+    const head = card.querySelector('.rule-head');
+    if (!head || head.querySelector('.rule-checkbox')) return;
+
+    const cb = document.createElement('input');
+    cb.type = 'checkbox';
+    cb.className = 'rule-checkbox';
+    cb.title = 'Mark as done';
+
+    // Stop click from toggling card open/close
+    cb.addEventListener('click', e => e.stopPropagation());
+
+    cb.addEventListener('change', function() {
+      const key = getCheckboxKey(this);
+      if (this.checked) {
+        localStorage.setItem(key, '1');
+        card.classList.add('checked');
+      } else {
+        localStorage.removeItem(key);
+        card.classList.remove('checked');
+      }
+      updateProgress();
+    });
+
+    const wrap = document.createElement('div');
+    wrap.className = 'check-wrap';
+    wrap.appendChild(cb);
+    head.appendChild(wrap);
+  });
+  restoreChecks();
+}
+
+function restoreChecks() {
+  document.querySelectorAll('.rule-checkbox').forEach(cb => {
+    const key = getCheckboxKey(cb);
+    if (localStorage.getItem(key) === '1') {
+      cb.checked = true;
+      cb.closest('.rule-card').classList.add('checked');
+    }
+  });
+}
+
+function resetChecks() {
+  const sec = document.querySelector('.section.active');
+  if (!sec) return;
+  sec.querySelectorAll('.rule-checkbox').forEach(cb => {
+    const key = getCheckboxKey(cb);
+    localStorage.removeItem(key);
+    cb.checked = false;
+    cb.closest('.rule-card').classList.remove('checked');
+  });
+  updateProgress();
+}
+
+function updateProgress() {
+  const sec = document.querySelector('.section.active');
+  if (!sec || sec.id === 'section-workflow') {
+    progressWrap.classList.remove('visible');
+    return;
+  }
+  const visible = Array.from(sec.querySelectorAll('.rule-card')).filter(c => !c.classList.contains('filter-hidden'));
+  const total = visible.length;
+  const done = visible.filter(c => c.classList.contains('checked')).length;
+  if (total === 0) { progressWrap.classList.remove('visible'); return; }
+  progressWrap.classList.add('visible');
+  document.getElementById('progress-label').textContent = done + ' of ' + total + ' checked';
+  document.getElementById('progress-fill').style.width = Math.round((done / total) * 100) + '%';
+}
+
+// ═══════════════════════════════════════
+// SCENARIO FILTERS
+// ═══════════════════════════════════════
+const activeFilters = new Set();
+
+function toggleFilter(chip) {
+  const f = chip.dataset.filter;
+  if (activeFilters.has(f)) {
+    activeFilters.delete(f);
+    chip.classList.remove('active');
+  } else {
+    activeFilters.add(f);
+    chip.classList.add('active');
+  }
+  applyFilters();
+}
+
+function clearFilters() {
+  activeFilters.clear();
+  document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
+  applyFilters();
+}
+
+function applyFilters() {
+  const sec = document.querySelector('.section.active');
+  if (!sec) return;
+
+  sec.querySelectorAll('.rule-card').forEach(card => {
+    if (activeFilters.size === 0) {
+      card.classList.remove('filter-hidden', 'filter-match');
+      return;
+    }
+    const titleEl = card.querySelector('.rule-title-text');
+    const scenarios = titleEl ? (titleEl.dataset.scenarios || '') : '';
+    const scenarioList = scenarios.split(' ').filter(Boolean);
+
+    const matches = scenarioList.some(s => activeFilters.has(s));
+
+    // Cards with no scenario tag are always shown (they apply to all clients)
+    if (scenarioList.length === 0) {
+      card.classList.remove('filter-hidden', 'filter-match');
+    } else if (matches) {
+      card.classList.remove('filter-hidden');
+      card.classList.add('filter-match');
+      card.classList.add('open'); // auto-expand matched cards
+    } else {
+      card.classList.add('filter-hidden');
+      card.classList.remove('filter-match');
+    }
+  });
+
+  updateProgress();
+}
+
+// ═══════════════════════════════════════
+// SEARCH INDEX
+// ═══════════════════════════════════════
+const srPanel = document.getElementById('search-panel');
+const srHeader = document.getElementById('sr-header');
+const srList = document.getElementById('sr-list');
+const searchEl = document.getElementById('search');
+
+const index = [];
+document.querySelectorAll('.section:not(.archive-section)').forEach(sec => {
+  const secId = sec.id.replace('section-', '');
+  const secTitle = sec.querySelector('.section-title') ? sec.querySelector('.section-title').textContent : '';
+
+  sec.querySelectorAll('.rule-card').forEach(card => {
+    const titleEl = card.querySelector('.rule-title-text');
+    const tagEl = card.querySelector('.tag');
+    const bodyEl = card.querySelector('.rule-body');
+    const title = titleEl ? titleEl.textContent.trim() : '';
+    const tag = tagEl ? tagEl.textContent.trim() : '';
+    const body = bodyEl ? bodyEl.textContent.trim() : '';
+    index.push({ type: 'rule', secId, secTitle, title, tag, body, card });
+  });
+
+  sec.querySelectorAll('.step-card').forEach(card => {
+    const body = card.textContent.trim();
+    index.push({ type: 'step', secId, secTitle, title: body.slice(0, 80), body, card });
+  });
+});
+
+function esc(s) { return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
+
+function hi(text, q) {
+  if (!q) return text;
+  return text.replace(new RegExp('(' + esc(q) + ')', 'gi'), '<mark>$1</mark>');
+}
+
+searchEl.addEventListener('input', function() {
+  const q = this.value.trim();
+  if (q.length < 2) {
+    srPanel.classList.remove('active');
+    const activeNav = document.querySelector('.nav-item.active');
+    if (activeNav) {
+      document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+      const sec = document.getElementById('section-' + activeNav.dataset.section);
+      if (sec) sec.classList.add('active');
+      filterBar.style.display = activeNav.dataset.section !== 'workflow' ? 'flex' : 'none';
+      updateProgress();
+    }
+    return;
+  }
+
+  const ql = q.toLowerCase();
+  const hits = index.filter(r => (r.title + ' ' + r.tag + ' ' + r.body).toLowerCase().includes(ql));
+
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  srPanel.classList.add('active');
+  filterBar.style.display = 'none';
+  progressWrap.classList.remove('visible');
+
+  srHeader.innerHTML = hits.length > 0
+    ? '<strong>' + hits.length + '</strong> result' + (hits.length !== 1 ? 's' : '') + ' for "<strong>' + q + '</strong>"'
+    : 'No results for "<strong>' + q + '</strong>"';
+
+  if (hits.length === 0) {
+    srList.innerHTML = '<div class="no-results">No matching rules or provisions found. Try different keywords.</div>';
+    return;
+  }
+
+  srList.innerHTML = hits.map((r, i) => {
+    const excerpt = r.body.replace(/\s+/g, ' ').trim().slice(0, 140);
+    return '<div class="sr-item" data-idx="' + i + '">'
+      + '<div class="sr-doc">' + hi(r.secTitle, q) + '</div>'
+      + '<div class="sr-title">' + hi(r.title, q) + '</div>'
+      + '<div class="sr-excerpt">' + hi(excerpt, q) + (excerpt.length >= 140 ? '…' : '') + '</div>'
+      + '</div>';
+  }).join('');
+
+  srList.querySelectorAll('.sr-item').forEach((el, i) => {
+    el.addEventListener('click', () => {
+      const r = hits[i];
+      searchEl.value = '';
+      srPanel.classList.remove('active');
+
+      document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+      document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+      const sec = document.getElementById('section-' + r.secId);
+      if (sec) sec.classList.add('active');
+      const navEl = document.querySelector('.nav-item[data-section="' + r.secId + '"]');
+      if (navEl) navEl.classList.add('active');
+
+      filterBar.style.display = r.secId !== 'workflow' ? 'flex' : 'none';
+      updateProgress();
+
+      setTimeout(() => {
+        r.card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        if (r.type === 'rule' && !r.card.classList.contains('open')) {
+          r.card.classList.add('open');
+        }
+        r.card.classList.add('highlight-flash');
+        setTimeout(() => r.card.classList.remove('highlight-flash'), 2000);
+      }, 80);
+    });
+  });
+});
+
+// ═══════════════════════════════════════
+// INIT
+// ═══════════════════════════════════════
+// -- ENHANCED DAILY USE CONTROLS --
+const STORAGE_PREFIX = 'ibisDraftingGuide:v2';
+const PROFILE_STORAGE_KEY = STORAGE_PREFIX + ':profile';
+const DETAIL_STORAGE_KEY = STORAGE_PREFIX + ':detailMode';
+const initialNav = document.querySelector('.nav-item.active');
+let currentSectionKey = initialNav ? initialNav.dataset.section : 'workflow';
+let filterSource = 'profile';
+let detailMode = storageGet(DETAIL_STORAGE_KEY) || 'details';
+let profileSaveTimer = null;
+let currentProfile = loadProfile();
+
+function storageGet(key) {
+  try { return localStorage.getItem(key); } catch (err) { return null; }
+}
+
+function storageSet(key, value) {
+  try { localStorage.setItem(key, value); } catch (err) {}
+}
+
+function storageRemove(key) {
+  try { localStorage.removeItem(key); } catch (err) {}
+}
+
+function nav(el) {
+  activateSection(el.dataset.section, { sourceNav: el, scrollTarget: el.dataset.scrollTarget });
+}
+
+function activateSection(key, options = {}) {
+  currentSectionKey = key || currentSectionKey || 'workflow';
+  document.querySelectorAll('.nav-item').forEach(n => {
+    const active = options.sourceNav ? n === options.sourceNav : (n.dataset.section === currentSectionKey && !n.dataset.scrollTarget);
+    n.classList.toggle('active', active);
+  });
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  const sec = document.getElementById('section-' + currentSectionKey);
+  if (sec) sec.classList.add('active');
+  srPanel.classList.remove('active');
+  const liveSearch = document.getElementById('search');
+  if (liveSearch && !options.keepSearchValue) liveSearch.value = '';
+  setToolsVisible(currentSectionKey !== 'workflow');
+  applyFilters();
+  restoreChecks();
+  if (options.scrollTarget) {
+    setTimeout(() => scrollToGuideTarget(options.scrollTarget), 80);
+  }
+}
+
+function scrollToGuideTarget(id) {
+  const target = document.getElementById(id);
+  if (!target) return;
+  target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  target.classList.add('highlight-flash');
+  setTimeout(() => target.classList.remove('highlight-flash'), 1800);
+}
+
+function setToolsVisible(show) {
+  filterBar.style.display = show ? 'flex' : 'none';
+  if (!show) progressWrap.classList.remove('visible');
+}
+
+function toggleCard(card) {
+  card.classList.toggle('open');
+}
+
+function copyBlock(btn) {
+  const block = btn.previousElementSibling;
+  const text = block ? block.innerText : '';
+  copyText(text).then(() => {
+    btn.textContent = 'Copied!';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2000);
+  }).catch(() => {
+    btn.textContent = 'Select text';
+    setTimeout(() => { btn.textContent = 'Copy'; }, 2000);
+  });
+}
+
+function copyText(text) {
+  if (navigator.clipboard && window.isSecureContext) {
+    return navigator.clipboard.writeText(text);
+  }
+  return new Promise((resolve, reject) => {
+    const area = document.createElement('textarea');
+    area.value = text;
+    area.setAttribute('readonly', '');
+    area.style.position = 'fixed';
+    area.style.left = '-9999px';
+    document.body.appendChild(area);
+    area.select();
+    const ok = document.execCommand('copy');
+    document.body.removeChild(area);
+    ok ? resolve() : reject(new Error('copy failed'));
+  });
+}
+
+function normalizeKey(value) {
+  return (value || '').toString().trim().toLowerCase()
+    .replace(/&/g, 'and')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '')
+    .slice(0, 64) || 'none';
+}
+
+function shortHash(text) {
+  let hash = 0;
+  for (let i = 0; i < text.length; i++) {
+    hash = ((hash << 5) - hash) + text.charCodeAt(i);
+    hash |= 0;
+  }
+  return Math.abs(hash).toString(36);
+}
+
+function matterKey() {
+  return normalizeKey(currentProfile.clientName) + '__' + normalizeKey(currentProfile.matterType);
+}
+
+function assignChecklistIds() {
+  document.querySelectorAll('.section:not(.archive-section)').forEach(sec => {
+    const secKey = sec.id.replace('section-', '');
+    sec.querySelectorAll('.rule-card').forEach((card, index) => {
+      const title = card.querySelector('.rule-title-text');
+      const label = title ? title.textContent.trim() : card.textContent.trim();
+      card.dataset.checkId = secKey + ':rule:' + (index + 1) + ':' + shortHash(label);
+    });
+    sec.querySelectorAll('.step-card').forEach((card, index) => {
+      const label = card.textContent.trim();
+      card.dataset.checkId = secKey + ':step:' + (index + 1) + ':' + shortHash(label);
+    });
+  });
+}
+
+function getCheckboxKey(checkbox) {
+  const item = checkbox.closest('.rule-card, .step-card');
+  const sec = item ? item.closest('.section') : null;
+  const secKey = sec ? sec.id.replace('section-', '') : 'unknown';
+  const itemKey = item ? item.dataset.checkId : 'unknown';
+  return STORAGE_PREFIX + ':check:' + matterKey() + ':' + secKey + ':' + itemKey;
+}
+
+function makeChecklistBox(item) {
+  const cb = document.createElement('input');
+  cb.type = 'checkbox';
+  cb.className = 'rule-checkbox';
+  cb.title = 'Mark as done';
+  cb.addEventListener('click', e => e.stopPropagation());
+  cb.addEventListener('change', function() {
+    const key = getCheckboxKey(this);
+    if (this.checked) {
+      storageSet(key, '1');
+      item.classList.add('checked');
+    } else {
+      storageRemove(key);
+      item.classList.remove('checked');
+    }
+    updateProgress();
+  });
+  return cb;
+}
+
+function injectCheckboxes() {
+  assignChecklistIds();
+  document.querySelectorAll('.rule-card').forEach(card => {
+    const head = card.querySelector('.rule-head');
+    if (!head || head.querySelector('.rule-checkbox')) return;
+    const wrap = document.createElement('div');
+    wrap.className = 'check-wrap';
+    wrap.appendChild(makeChecklistBox(card));
+    head.appendChild(wrap);
+  });
+  document.querySelectorAll('.section:not(.archive-section) .step-card').forEach(card => {
+    if (card.querySelector('.rule-checkbox')) return;
+    card.classList.add('checkable');
+    const wrap = document.createElement('div');
+    wrap.className = 'check-wrap';
+    wrap.appendChild(makeChecklistBox(card));
+    const body = card.querySelector('.step-body');
+    card.insertBefore(wrap, body || card.firstChild);
+  });
+  restoreChecks();
+}
+
+function restoreChecks() {
+  document.querySelectorAll('.rule-checkbox').forEach(cb => {
+    const checked = storageGet(getCheckboxKey(cb)) === '1';
+    const item = cb.closest('.rule-card, .step-card');
+    cb.checked = checked;
+    if (item) item.classList.toggle('checked', checked);
+  });
+  updateProgress();
+}
+
+function resetChecks() {
+  const sec = document.querySelector('.section.active');
+  if (!sec) return;
+  sec.querySelectorAll('.rule-checkbox').forEach(cb => {
+    storageRemove(getCheckboxKey(cb));
+    cb.checked = false;
+    const item = cb.closest('.rule-card, .step-card');
+    if (item) item.classList.remove('checked');
+  });
+  updateProgress();
+}
+
+function getVisibleChecklistItems(sec) {
+  return Array.from(sec.querySelectorAll('.rule-card, .step-card')).filter(item => {
+    if (!item.querySelector('.rule-checkbox')) return false;
+    return !item.classList.contains('filter-hidden');
+  });
+}
+
+function updateProgress() {
+  const sec = document.querySelector('.section.active');
+  if (!sec || sec.id === 'section-workflow' || srPanel.classList.contains('active')) {
+    progressWrap.classList.remove('visible');
+    return;
+  }
+  const visible = getVisibleChecklistItems(sec);
+  const total = visible.length;
+  const done = visible.filter(c => c.classList.contains('checked')).length;
+  if (total === 0) {
+    progressWrap.classList.remove('visible');
+    return;
+  }
+  progressWrap.classList.add('visible');
+  const filtered = activeFilters.size ? ' in filtered view' : '';
+  document.getElementById('progress-label').textContent = done + ' of ' + total + ' checked' + filtered;
+  document.getElementById('progress-fill').style.width = Math.round((done / total) * 100) + '%';
+}
+
+function setupFilterChips() {
+  document.querySelectorAll('.filter-chip[data-filter]').forEach(chip => {
+    chip.setAttribute('role', 'button');
+    chip.setAttribute('tabindex', '0');
+    chip.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        toggleFilter(chip);
+      }
+    });
+  });
+  syncFilterChips();
+}
+
+function setFilters(filters, source = 'custom', skipApply = false) {
+  activeFilters.clear();
+  Array.from(new Set(filters.filter(Boolean))).forEach(f => activeFilters.add(f));
+  filterSource = source;
+  syncFilterChips();
+  updateFilterSummary();
+  if (!skipApply) applyFilters();
+}
+
+function toggleFilter(chip) {
+  const f = chip.dataset.filter;
+  activeFilters.has(f) ? activeFilters.delete(f) : activeFilters.add(f);
+  filterSource = 'custom';
+  syncFilterChips();
+  applyFilters();
+}
+
+function clearFilters() {
+  setFilters([], 'custom');
+}
+
+function syncFilterChips() {
+  document.querySelectorAll('.filter-chip[data-filter]').forEach(chip => {
+    const active = activeFilters.has(chip.dataset.filter);
+    chip.classList.toggle('active', active);
+    chip.setAttribute('aria-pressed', active ? 'true' : 'false');
+  });
+}
+
+function filterLabelFor(filter) {
+  const chip = Array.from(document.querySelectorAll('.filter-chip[data-filter]')).find(c => c.dataset.filter === filter);
+  return chip ? chip.textContent.trim() : filter;
+}
+
+function updateFilterSummary() {
+  const summary = document.getElementById('filter-summary');
+  if (!summary) return;
+  if (!activeFilters.size) {
+    summary.textContent = 'Showing all rules';
+    return;
+  }
+  const labels = Array.from(activeFilters).map(filterLabelFor).join(', ');
+  summary.textContent = (filterSource === 'profile' ? 'Profile filters: ' : 'Custom filters: ') + labels;
+}
+
+function scenarioMatches(scenarioList) {
+  if (!activeFilters.size || scenarioList.length === 0) return true;
+  const selectedMarital = activeFilters.has('married') ? 'married' : (activeFilters.has('single') ? 'single' : '');
+  if (selectedMarital) {
+    const blockedMarital = selectedMarital === 'married' ? 'single' : 'married';
+    if (scenarioList.includes(blockedMarital)) return false;
+  }
+  const nonMaritalScenarios = scenarioList.filter(s => s !== 'married' && s !== 'single');
+  const selectedNonMarital = Array.from(activeFilters).filter(s => s !== 'married' && s !== 'single');
+  if (selectedNonMarital.length === 0) {
+    return nonMaritalScenarios.length === 0 && (!selectedMarital || scenarioList.includes(selectedMarital));
+  }
+  return nonMaritalScenarios.some(s => activeFilters.has(s)) || (nonMaritalScenarios.length === 0 && selectedMarital && scenarioList.includes(selectedMarital));
+}
+
+function applyFilters() {
+  const sec = document.querySelector('.section.active');
+  if (!sec) return;
+  sec.querySelectorAll('.rule-card').forEach(card => {
+    card.querySelectorAll('[data-scenarios]').forEach(el => {
+      if (el.classList.contains('rule-title-text')) return;
+      const nestedScenarios = (el.dataset.scenarios || '').split(' ').filter(Boolean);
+      el.classList.toggle('scenario-hidden', !scenarioMatches(nestedScenarios));
+    });
+    if (activeFilters.size === 0) {
+      card.classList.remove('filter-hidden', 'filter-match');
+      return;
+    }
+    const titleEl = card.querySelector('.rule-title-text');
+    const scenarios = titleEl ? (titleEl.dataset.scenarios || '') : '';
+    const scenarioList = scenarios.split(' ').filter(Boolean);
+    const matches = scenarioMatches(scenarioList);
+    if (scenarioList.length === 0) {
+      card.classList.remove('filter-hidden', 'filter-match');
+    } else if (matches) {
+      card.classList.remove('filter-hidden');
+      card.classList.add('filter-match');
+    } else {
+      card.classList.add('filter-hidden');
+      card.classList.remove('filter-match');
+    }
+  });
+  updateFilterSummary();
+  applyDetailMode();
+  updateProgress();
+}
+
+function toggleDetailMode() {
+  detailMode = detailMode === 'details' ? 'headings' : 'details';
+  storageSet(DETAIL_STORAGE_KEY, detailMode);
+  const sec = document.querySelector('.section.active');
+  if (sec && detailMode === 'headings') {
+    sec.querySelectorAll('.rule-card').forEach(card => card.classList.remove('open'));
+  }
+  applyDetailMode();
+}
+
+function applyDetailMode() {
+  const btn = document.getElementById('detail-toggle');
+  if (btn) btn.textContent = detailMode === 'details' ? 'Headings only' : 'Show details';
+  const sec = document.querySelector('.section.active');
+  if (!sec || detailMode !== 'details') return;
+  sec.querySelectorAll('.rule-card:not(.filter-hidden)').forEach(card => card.classList.add('open'));
+}
+
+function blankProfile() {
+  return { clientName: '', matterType: '', maritalStatus: '', flags: [] };
+}
+
+function loadProfile() {
+  const raw = storageGet(PROFILE_STORAGE_KEY);
+  if (!raw) return blankProfile();
+  try {
+    const parsed = JSON.parse(raw);
+    return Object.assign(blankProfile(), parsed, { flags: Array.isArray(parsed.flags) ? parsed.flags : [] });
+  } catch (err) {
+    return blankProfile();
+  }
+}
+
+function setupProfilePanel() {
+  writeProfileToPanel(currentProfile);
+  ['profile-client', 'profile-matter', 'profile-marital'].forEach(id => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.addEventListener(el.tagName === 'SELECT' ? 'change' : 'input', scheduleProfileSave);
+  });
+  document.querySelectorAll('[data-profile-flag]').forEach(flag => {
+    flag.addEventListener('change', () => {
+      updateFlagStyles();
+      scheduleProfileSave();
+    });
+  });
+  updateFlagStyles();
+  updateProfileStatus();
+}
+
+function scheduleProfileSave() {
+  clearTimeout(profileSaveTimer);
+  profileSaveTimer = setTimeout(() => applyProfileFromPanel(), 250);
+}
+
+function readProfileFromPanel() {
+  return {
+    clientName: (document.getElementById('profile-client') || {}).value || '',
+    matterType: (document.getElementById('profile-matter') || {}).value || '',
+    maritalStatus: (document.getElementById('profile-marital') || {}).value || '',
+    flags: Array.from(document.querySelectorAll('[data-profile-flag]:checked')).map(cb => cb.value)
+  };
+}
+
+function writeProfileToPanel(profile) {
+  const client = document.getElementById('profile-client');
+  const matter = document.getElementById('profile-matter');
+  const marital = document.getElementById('profile-marital');
+  if (client) client.value = profile.clientName || '';
+  if (matter) matter.value = profile.matterType || '';
+  if (marital) marital.value = profile.maritalStatus || '';
+  document.querySelectorAll('[data-profile-flag]').forEach(cb => {
+    cb.checked = profile.flags.includes(cb.value);
+  });
+  updateFlagStyles();
+}
+
+function updateFlagStyles() {
+  document.querySelectorAll('.flag-toggle').forEach(label => {
+    const cb = label.querySelector('input');
+    label.classList.toggle('active', !!(cb && cb.checked));
+  });
+}
+
+function profileFilters(profile) {
+  const filters = [];
+  if (profile.maritalStatus) filters.push(profile.maritalStatus);
+  if (profile.matterType === 'restatement') filters.push('restatement');
+  if (profile.matterType === 'mapt') filters.push('medicaid');
+  profile.flags.forEach(flag => filters.push(flag));
+  return Array.from(new Set(filters));
+}
+
+function applyProfileFromPanel() {
+  currentProfile = readProfileFromPanel();
+  storageSet(PROFILE_STORAGE_KEY, JSON.stringify(currentProfile));
+  setFilters(profileFilters(currentProfile), 'profile');
+  restoreChecks();
+  updateProfileStatus();
+}
+
+function clearProfile() {
+  currentProfile = blankProfile();
+  storageRemove(PROFILE_STORAGE_KEY);
+  writeProfileToPanel(currentProfile);
+  setFilters([], 'profile');
+  restoreChecks();
+  updateProfileStatus();
+}
+
+function matterLabel(value) {
+  const labels = {
+    'new-trust': 'New trust',
+    'restatement': 'Restatement',
+    'will-only': 'Will-only / ancillary',
+    'mapt': 'MAPT'
+  };
+  return labels[value] || 'Matter type not set';
+}
+
+function updateProfileStatus() {
+  const status = document.getElementById('profile-status');
+  const hint = document.getElementById('profile-hint');
+  const name = (currentProfile.clientName || '').trim();
+  if (status) {
+    status.textContent = name ? ('Tracking: ' + name + ' / ' + matterLabel(currentProfile.matterType)) : 'Checklist scope: default';
+  }
+  if (hint) {
+    const count = profileFilters(currentProfile).length;
+    hint.textContent = name
+      ? (count ? count + ' profile filter' + (count === 1 ? '' : 's') + ' applied. Checklist progress is scoped to this matter.' : 'No scenario filters selected. Checklist progress is scoped to this matter.')
+      : 'Tip: add the client name before checking off tasks so progress stays separate from other matters.';
+  }
+}
+
+function htmlEscape(text) {
+  return (text || '').replace(/[&<>"']/g, ch => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ch]));
+}
+
+function hi(text, q) {
+  const safe = htmlEscape(text);
+  if (!q) return safe;
+  return safe.replace(new RegExp('(' + esc(htmlEscape(q)) + ')', 'gi'), '<mark>$1</mark>');
+}
+
+function setupSearch() {
+  const oldSearch = document.getElementById('search');
+  if (!oldSearch || !oldSearch.parentNode) return;
+  const cleanSearch = oldSearch.cloneNode(true);
+  oldSearch.parentNode.replaceChild(cleanSearch, oldSearch);
+  cleanSearch.addEventListener('input', handleSearchInput);
+}
+
+function handleSearchInput() {
+  const q = this.value.trim();
+  if (q.length < 2) {
+    srPanel.classList.remove('active');
+    activateSection(currentSectionKey, { keepSearchValue: true });
+    return;
+  }
+  const ql = q.toLowerCase();
+  const hits = index.filter(r => (r.title + ' ' + (r.tag || '') + ' ' + r.body).toLowerCase().includes(ql));
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  srPanel.classList.add('active');
+  setToolsVisible(false);
+  srHeader.innerHTML = hits.length > 0
+    ? '<strong>' + hits.length + '</strong> result' + (hits.length !== 1 ? 's' : '') + ' for "<strong>' + htmlEscape(q) + '</strong>"'
+    : 'No results for "<strong>' + htmlEscape(q) + '</strong>"';
+  if (hits.length === 0) {
+    srList.innerHTML = '<div class="no-results">No matching rules or provisions found. Try different keywords.</div>';
+    return;
+  }
+  srList.innerHTML = hits.map((r, i) => {
+    const excerpt = r.body.replace(/\s+/g, ' ').trim().slice(0, 140);
+    return '<div class="sr-item" data-idx="' + i + '">'
+      + '<div class="sr-doc">' + hi(r.secTitle, q) + '</div>'
+      + '<div class="sr-title">' + hi(r.title, q) + '</div>'
+      + '<div class="sr-excerpt">' + hi(excerpt, q) + (excerpt.length >= 140 ? '&hellip;' : '') + '</div>'
+      + '</div>';
+  }).join('');
+  srList.querySelectorAll('.sr-item').forEach((el, i) => {
+    el.addEventListener('click', () => openSearchHit(hits[i]));
+  });
+}
+
+function openSearchHit(result) {
+  const liveSearch = document.getElementById('search');
+  if (liveSearch) liveSearch.value = '';
+  srPanel.classList.remove('active');
+  activateSection(result.secId);
+  if (result.card.classList.contains('filter-hidden')) {
+    setFilters([], 'custom');
+  }
+  setTimeout(() => {
+    result.card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    if (result.type === 'rule') result.card.classList.add('open');
+    result.card.classList.add('highlight-flash');
+    setTimeout(() => result.card.classList.remove('highlight-flash'), 2000);
+  }, 80);
+}
+
+function bootGuide() {
+  setupProfilePanel();
+  setupFilterChips();
+  setupSearch();
+  setFilters(profileFilters(currentProfile), 'profile', true);
+  injectCheckboxes();
+  activateSection(currentSectionKey, { keepSearchValue: true });
+}
+
+bootGuide();
+</script>
+</body>
+</html>
